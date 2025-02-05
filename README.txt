@@ -1,4 +1,4 @@
-This is a portfolio of me.
+This is my portfolio.
 
 I developed this with a help of html5up.com , ChatGpt and some other online resources.
 
