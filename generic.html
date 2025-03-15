@@ -30,7 +30,7 @@
 								<h2><strong>Education</strong></h2>
 								<div class="education">
 									<ul>
-									<li><p><strong>Bachelor of Engineering - Electronics and Communication Engineering (2022-2026)</strong>  -  Grade : 8.78
+									<li><p><strong>Bachelor of Engineering - Electronics and Communication Engineering (2022-2026)</strong>  -  Grade : 8.86
 										<div class="college-name"><i>Kongu Engineering College, Perundurai</i></div>
 									</p></li>
 									<li><p><strong>Higher Secondary School - 2022</strong>  - 92.8%
@@ -57,8 +57,8 @@
 									<li>
 										<span class="image"><img src="images/Cert2.jpg" alt="Unity Certificate" width="400" height="300"/></span>
 										<div class="inner">
-											<h3>Unity Game Development
-											</h3>
+											<h3>Unity Game Development</h3>
+											<br>
 											<p>Issued by: Udemy</p>
 											<a href="https://www.udemy.com/certificate/UC-de611297-b49f-40bd-9c7f-9406537c6b75/" class="button" target="_blank">View Certificate</a>
 										</div>
@@ -66,20 +66,81 @@
 								</ul>
 							</section>
 
+							<section id="competition-certificates" class="main">
+								<h2><strong>Academic related achievements</strong></h2>
+								<div class="certificates-container">
+									<ul class="certificates">
+										<li>
+											<span class="image"><img src="images/Academic_Cert/Cert1.jpg" alt="Hackathon Certificate" /></span>
+											<h3>Neo Codathon (KEC) - Top 25</h3>
+											<p>Secured a place in top 25 in coding competition for overall college,KEC.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images//Academic_Cert/Cert2.jpg" alt="Game Jam Certificate" /></span>
+											<h3>Codathon (KEC) - 1st Place</h3>
+											<p>Secured 1st place in intra department level coding competition,KEC.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images/Academic_Cert/Cert3.jpg" alt="Hackathon Certificate" /></span>
+											<h3>Ideathon'24 - 2nd Place</h3>
+											<p>Secured second place for our presentation in Ideathon'24 ECE,KEC.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images/Academic_Cert/Cert4.jpg" alt="Hackathon Certificate" /></span>
+											<h3>Gen AI Hackathon - Top 25</h3>
+											<p>Secured a place in top 25 in a National level hackathon by Intel and KPRIET.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images//Academic_Cert/Cert5.jpg" alt="Coding Competition Certificate" /></span>
+											<h3>Line Follower - 3rd Place</h3>
+											<p>Secured 1st place in a robotics competition - Expelliarmus'24,KEC.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images//Academic_Cert/Cert6.jpg" alt="Coding Competition Certificate" /></span>
+											<h3>Robo race (KEC) - 3rd Place</h3>
+											<p>Secured 1st place in a robotics competition - Expelliarmus'24,KEC.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images//Academic_Cert/Cert7.jpg" alt="Coding Competition Certificate" /></span>
+											<h3>Track maze - 1st Place</h3>
+											<p>Secured 1st place in a robotics competition - Krizen'23,SKCET.</p>
+										</li>
+										<li>
+											<span class="image"><img src="images//Academic_Cert/Cert8.jpg" alt="Coding Competition Certificate" /></span>
+											<h3>Exodia (KEC) - Runner II</h3>
+											<p>Won second runner up place in Wire it in Exodia,KEC.</p>
+										</li>
+									</ul>
+								</div>
+							</section>
+							
+							<script>
+								document.addEventListener("DOMContentLoaded", function () {
+									const container = document.querySelector(".certificates-container");
+							
+									container.addEventListener("wheel", function (event) {
+										event.preventDefault();
+										container.scrollLeft += event.deltaY; // Enable horizontal scrolling with mouse wheel
+									});
+								});
+							</script>
+							
+
 							<section id="clubs" class="main">
 								<h2><strong>Association and Clubs</strong></h2>
 								<ul class="clubs">
 									<li><span class="club-name">ECE Association</span> - <span class="club-role">Executive member</span></li>
 									<li><span class="club-name">Rotaract Club</span> - <span class="club-role">Member</span></li>
+									<li><span class="club-name">ECE</span> - <span class="club-role">Project Coordinator (My class)</span></li>
 								</ul>
 							</section>							
 
 							<section id="content" class="main">
 								<h2><strong>Languages</strong></h2>
 								<ul class="languages">
-									<li>English</li>
-									<li>Tamil</li>
-									<li>Japanese</li>
+									<li><strong>English</strong> - Fluent</li>
+									<li><strong>Tamil</strong> - Native</li>
+									<li><strong>Japanese</strong> - Basic</li>
 								</ul>
 								
 							</section>
@@ -121,6 +182,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
