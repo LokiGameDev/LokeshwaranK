@@ -12,13 +12,66 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 	<body class="is-preload">
 
+		<div id="particles-js"></div>
+		<script>
+			particlesJS("particles-js", {
+				"particles": {
+					"number": {
+						"value": 100, /* Adjust number of particles */
+						"density": { "enable": true, "value_area": 800 }
+					},
+					"color": { "value": "#ffffff" }, /* White particles */
+					"shape": {
+						"type": "circle",
+						"stroke": { "width": 0, "color": "#000000" },
+						"polygon": { "nb_sides": 5 }
+					},
+					"opacity": { "value": 0.5, "random": false },
+					"size": { "value": 3, "random": true },
+					"line_linked": {
+						"enable": true,
+						"distance": 150,
+						"color": "#ffffff",
+						"opacity": 0.4,
+						"width": 1
+					},
+					"move": {
+						"enable": true,
+						"speed": 2, /* Adjust speed */
+						"direction": "none",
+						"random": false,
+						"straight": false,
+						"out_mode": "out",
+						"bounce": false
+					}
+				},
+				"interactivity": {
+					"detect_on": "canvas",
+					"events": {
+						"onhover": { "enable": true, "mode": "repulse" },
+						"onclick": { "enable": true, "mode": "push" },
+						"resize": true
+					},
+					"modes": {
+						"repulse": { "distance": 100, "duration": 0.4 },
+						"push": { "particles_nb": 4 }
+					}
+				},
+				"retina_detect": true
+			});
+		</script>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
 					<header id="header">
+						<a href="index.html" class="arrow-button">
+							<img src="images/Prev_Arrow.jpg" alt="Next Page" width="30">
+						</a>
+						
 						<h1><strong>More about me</strong></h1>
 					</header>
 
@@ -71,47 +124,53 @@
 								<div class="certificates-container">
 									<ul class="certificates">
 										<li>
-											<span class="image"><img src="images/Academic_Cert/Cert1.jpg" alt="Hackathon Certificate" /></span>
+											<span class="image"><img src="images/Academic_Cert/Cert1.jpg" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
 											<h3>Neo Codathon (KEC) - Top 25</h3>
 											<p>Secured a place in top 25 in coding competition for overall college,KEC.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images//Academic_Cert/Cert2.jpg" alt="Game Jam Certificate" /></span>
+											<span class="image"><img src="images//Academic_Cert/Cert2.jpg" onclick="openModal(this)" alt="Game Jam Certificate" /></span>
 											<h3>Codathon (KEC) - 1st Place</h3>
 											<p>Secured 1st place in intra department level coding competition,KEC.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images/Academic_Cert/Cert3.jpg" alt="Hackathon Certificate" /></span>
+											<span class="image"><img src="images/Academic_Cert/Cert3.jpg" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
 											<h3>Ideathon'24 - 2nd Place</h3>
 											<p>Secured second place for our presentation in Ideathon'24 ECE,KEC.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images/Academic_Cert/Cert4.jpg" alt="Hackathon Certificate" /></span>
+											<span class="image"><img src="images/Academic_Cert/Cert4.jpg" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
 											<h3>Gen AI Hackathon - Top 25</h3>
 											<p>Secured a place in top 25 in a National level hackathon by Intel and KPRIET.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images//Academic_Cert/Cert5.jpg" alt="Coding Competition Certificate" /></span>
+											<span class="image"><img src="images//Academic_Cert/Cert5.jpg" onclick="openModal(this)" alt="Coding Competition Certificate" /></span>
 											<h3>Line Follower - 3rd Place</h3>
 											<p>Secured 1st place in a robotics competition - Expelliarmus'24,KEC.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images//Academic_Cert/Cert6.jpg" alt="Coding Competition Certificate" /></span>
+											<span class="image"><img src="images//Academic_Cert/Cert6.jpg" onclick="openModal(this)" alt="Coding Competition Certificate" /></span>
 											<h3>Robo race (KEC) - 3rd Place</h3>
 											<p>Secured 1st place in a robotics competition - Expelliarmus'24,KEC.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images//Academic_Cert/Cert7.jpg" alt="Coding Competition Certificate" /></span>
+											<span class="image"><img src="images//Academic_Cert/Cert7.jpg" onclick="openModal(this)" alt="Coding Competition Certificate" /></span>
 											<h3>Track maze - 1st Place</h3>
 											<p>Secured 1st place in a robotics competition - Krizen'23,SKCET.</p>
 										</li>
 										<li>
-											<span class="image"><img src="images//Academic_Cert/Cert8.jpg" alt="Coding Competition Certificate" /></span>
+											<span class="image"><img src="images//Academic_Cert/Cert8.jpg" onclick="openModal(this)" alt="Coding Competition Certificate" /></span>
 											<h3>Exodia (KEC) - Runner II</h3>
 											<p>Won second runner up place in Wire it in Exodia,KEC.</p>
 										</li>
 									</ul>
 								</div>
+
+								<div id="certificate-modal" class="modal">
+									<span class="close" onclick="closeModal()">&times;</span>
+									<img class="modal-content" id="modal-image">
+								</div>
+
 							</section>
 							
 							<script>
@@ -123,6 +182,27 @@
 										container.scrollLeft += event.deltaY; // Enable horizontal scrolling with mouse wheel
 									});
 								});
+
+								// Open modal when clicking on a certificate
+								function openModal(img) {
+									let modal = document.getElementById("certificate-modal");
+									let modalImg = document.getElementById("modal-image");
+									modal.style.display = "flex";
+									modalImg.src = img.src;
+								}
+
+								// Close modal when clicking anywhere outside the certificate
+								document.getElementById("certificate-modal").addEventListener("click", function (event) {
+									if (event.target !== document.getElementById("modal-image")) {
+										closeModal();
+									}
+								});
+
+								// Close modal function
+								function closeModal() {
+									document.getElementById("certificate-modal").style.display = "none";
+								}
+
 							</script>
 							
 
@@ -138,9 +218,9 @@
 							<section id="content" class="main">
 								<h2><strong>Languages</strong></h2>
 								<ul class="languages">
-									<li><strong>English</strong> - Fluent</li>
-									<li><strong>Tamil</strong> - Native</li>
-									<li><strong>Japanese</strong> - Basic</li>
+									<li><strong>English&nbsp;</strong> - Fluent</li>
+									<li><strong>Tamil&nbsp;</strong> - Native</li>
+									<li><strong>Japanese&nbsp;</strong> - Basic</li>
 								</ul>
 								
 							</section>

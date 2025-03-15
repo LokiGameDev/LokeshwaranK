@@ -13,6 +13,24 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+	<script>
+		const text = "Hi, I am Lokeshwaran K";
+		let index = 0;
+
+		function typeEffect() {
+			if (index < text.length) {
+				document.getElementById("typing-text").innerHTML += text.charAt(index);
+				index++;
+				setTimeout(typeEffect, 75); // Adjust typing speed (100ms)
+			}
+		}
+
+		window.onload = function () {
+			typeEffect();
+		};
+	</script>
+
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -23,7 +41,7 @@
 						<span class="logo">
 							<img src="images/logo.svg" alt="Logo">
 						</span>
-						<h1><b>Hi, I am Lokeshwaran K</b></h1>
+						<h1 id="typing-text"></h1>
 						<p>A self taught Game developer<br /></p>
 						<p>
 						<i>
