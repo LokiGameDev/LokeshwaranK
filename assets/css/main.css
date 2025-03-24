@@ -3987,11 +3987,13 @@ input, select, textarea {
 		font-family: Arial, sans-serif;
 		list-style: none;
 		font-size: 0.8em;
-		text-align: left;
 		padding-left: 100px;
 	}
 	
 	.clubs li {
+		display: flex;
+		justify-content: space-between; /* Pushes elements to opposite ends */
+		align-items: center;
 		padding: 10px 15px;
 		background: #ffffff;
 		border-radius: 5px;
@@ -4002,8 +4004,14 @@ input, select, textarea {
 	
 	.club-name {
 		font-weight: bold;
+		text-align: left;
 	}
 	
+	.club-time {
+    	margin-left: auto; /* Pushes the time to the right */
+		text-align: right;
+	}
+
 	/* Mobile Responsive */
 	@media (max-width: 768px) {
 		.clubs li {
