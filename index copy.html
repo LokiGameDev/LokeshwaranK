@@ -5,25 +5,35 @@
 		<title>Lokeshwaran K</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main copy.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<script>
-		const text = "Hi, I am Lokeshwaran K";
+		const part1 = "Hi, I am ";
+		const part2 = "Lokeshwaran K";
+		const fullText = part1 + part2;
 		let index = 0;
-
+	
 		function typeEffect() {
-			if (index < text.length) {
-				document.getElementById("typing-text").innerHTML += text.charAt(index);
+			if (index < fullText.length) {
+				const typingTextEl = document.getElementById("typing-text");
+	
+				if (index < part1.length) {
+					typingTextEl.innerHTML += `<span style="color: #858585;">${part1.charAt(index)}</span>`;
+				} else {
+					typingTextEl.innerHTML += `<span style="color: #f3f3f3;">${part2.charAt(index - part1.length)}</span>`;
+				}
+	
 				index++;
-				setTimeout(typeEffect, 75); // Adjust typing speed (100ms)
+				setTimeout(typeEffect, 75);
 			}
 		}
-
+	
 		window.onload = function () {
 			typeEffect();
 		};
 	</script>
+	
 
 
 	<body class="is-preload">
@@ -37,52 +47,65 @@
 							<img src="images/logo.svg" alt="Logo">
 						</span>
 						<h1 id="typing-text"></h1>
-						<p>Unity Game developer<br /></p>
+						<h3>Erode, Tamil Nadu</h3>
+						<h4>Unity Game developer</h4>
 						<p>
-						<i>
 							<a href="https://www.linkedin.com/in/lokeshwarank/" target="_blank">LinkedIn</a> , 
 							<a href="https://github.com/LokiGameDev" target="_blank">GitHub</a> ,
 							<a href="https://leetcode.com/u/lokeshwarank007/" target="_blank">Leetcode</a>
-						</i>.</p>
+						</p>
+						<p></br></p>
+						<a class="button primary2" href="images/Lokeshwaran K Resume.pdf" download>Download Resume</a>
 					</header>
+
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active">About Me</a></li>
-							<li><a href="#first">Skills</a></li>
-							<li><a href="#second">Projects</a></li>
-							<li><a href="#cta">More</a></li>
+							<li><a href="#projects" class="active">Projects</a></li>
+							<li><a href="#techstack">Tech stack</a></li>
+							<li><a href="#more">More</a></li>
 						</ul>
 					</nav>
+
 
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Introduction -->
-							<section id="intro" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2><strong>Lokeshwaran K</strong></h2>
-										</header>
-										<p>Hi,  
-											I am currently studying Electronics and Communication Engineering (ECE) in college. 
-											I have a strong passion for game development and am always learning new skills 
-											to create fun and interactive games. My goal is to improve my abilities and 
-											make exciting games in the future.</p>
-										<a class="button primary" href="images/Lokeshwaran K Resume.pdf" download>Download Resume</a>
-									</div>
-									<span class="image"><img src="images/picME.jpg" alt="" /></span>
+						<section id="me" class="main">
+							<div class="spotlight">
+								<div class="content">
+									<p>Hi,
+										I am doing game development in Unity and learning new skills 
+										to create fun and interactive games. Looking for oppurtunities to work in a team.</p>
 								</div>
+								<span class="image"><img src="images/picME.jpeg" alt="" /></span>
+							</div>
+						</section>
+
+						<!-- Projects Section -->
+							<section id="projects" class="main special">
+								<header class="major">
+									<h2><strong>Projects</strong></h2>
+								</header>
+								<ul class="projects">
+									<li>
+										<span class="image"><img src="images/picLIT.jpg" alt="Project 1" width="250" height="150"/></span>
+										<h3><strong>Locked In</strong></h3>
+										<p>A simple horror type maze runner game.</p>
+										<a href="https://github.com/LokiGameDev/Locked-In-Game" target="_blank" class="button small">GitHub</a>
+										<a href="https://lokidevtamil.itch.io/locked-in" target="_blank" class="button small">Itchio</a>
+									</li>
+								</ul>
 							</section>
 
+
 						<!-- First Section -->
-							<section id="first" class="main special">
+							<section id="techstack" class="main special">
 								<header class="major">
-									<h2><strong>Skills</strong></h2>
+									<h2><strong>Tech stack</strong></h2>
 								</header>
-								<h3>Softwares</h3>
 								<ul class="skills">
 									<li>
 										<img src="images/picUL.png" alt="Unity">
@@ -97,39 +120,21 @@
 										<span>Krita</span>
 									</li>
 								</ul>
-								<h3>Languages</h3>
 								<ul class="skills">
 									<li>
 										<img src="images/picCS.png" alt="C#">
 										<span>C#</span>
 									</li>
 								</ul>
-								
-							</section>
 
-						<!-- Second Section -->
-							<section id="second" class="main special">
-								<header class="major">
-									<h2><strong>Projects</strong></h2>
-									<p>You can look into my projects shown below<br /></p>
-								</header>
-								<ul class="projects">
-									<li>
-										<span class="image"><img src="images/picLIT.jpg" alt="Project 1" width="250" height="150"/></span>
-										<h3><strong>Locked In</strong></h3>
-										<p>A simple horror type maze runner game.</p>
-										<a href="https://github.com/LokiGameDev/Locked-In-Game" target="_blank" class="button small">GitHub</a>
-										<a href="https://lokidevtamil.itch.io/locked-in" target="_blank" class="button small">Itchio</a>
-									</li>
-								</ul>
 							</section>
+						
 
 						<!-- Get Started -->
-							<section id="cta" class="main special">
+							<section id="more" class="main special">
 								<header class="major">
 									<h2><strong>More about me</strong></h2>
 								</header>
-								<p><h3>For my educational and aditional information click below</h3></p>
 								<footer class="major">
 									<ul class="actions special">
 										<li><a href="generic.html" class="button primary">About me</a></li>
