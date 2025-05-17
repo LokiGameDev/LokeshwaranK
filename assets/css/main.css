@@ -1,5 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap');
 
 /*
 	Stellar by HTML5 UP
@@ -3118,7 +3118,7 @@ input, select, textarea {
 	#header {
 		padding: 2em 1em 1em 2em ;
 		text-align: center;
-		font-family: 'Pixelify Sans', cursive;
+		font-family: 'Tinos', cursive;
 	}
 
 		#header h1 {
@@ -3283,7 +3283,7 @@ input, select, textarea {
 		border-top-right-radius: 0.25em;
 		cursor: default;
 		text-align: center;
-		font-family: 'Pixelify Sans', cursive;
+		font-family: 'Tinos', cursive;
 	}
 
 		#nav input, #nav select, #nav textarea {
@@ -3395,7 +3395,7 @@ input, select, textarea {
 		background-color: #ffffff;
 		color: #636363;
 		border-radius: 0.25em;
-		font-family: 'Pixelify Sans', cursive;
+		font-family: 'Tinos', cursive;
 	}
 
 		#main input, #main select, #main textarea {
@@ -4151,7 +4151,7 @@ input, select, textarea {
 		padding: 5em 5em 3em 5em ;
 		width: calc(100% + 2em);
 		margin: 0 0 3em -2em;
-		font-family: 'Pixelify Sans', cursive;
+		font-family: 'Tinos', cursive;
 	}
 
 		#footer > * {
