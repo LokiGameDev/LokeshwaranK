@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<title>Rogue Blade</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<body class="is-preload">
+
+		<div id="particles-js"></div>
+		<script>
+			particlesJS("particles-js", {
+				"particles": {
+					"number": {
+						"value": 100, /* Adjust number of particles */
+						"density": { "enable": true, "value_area": 800 }
+					},
+					"color": { "value": "#ffffff" }, /* White particles */
+					"shape": {
+						"type": "circle",
+						"stroke": { "width": 0, "color": "#000000" },
+						"polygon": { "nb_sides": 5 }
+					},
+					"opacity": { "value": 0.5, "random": false },
+					"size": { "value": 3, "random": true },
+					"line_linked": {
+						"enable": true,
+						"distance": 150,
+						"color": "#ffffff",
+						"opacity": 0.4,
+						"width": 1
+					},
+					"move": {
+						"enable": true,
+						"speed": 2, /* Adjust speed */
+						"direction": "none",
+						"random": false,
+						"straight": false,
+						"out_mode": "out",
+						"bounce": false
+					}
+				},
+				"interactivity": {
+					"detect_on": "canvas",
+					"events": {
+						"onhover": { "enable": true, "mode": "repulse" },
+						"onclick": { "enable": true, "mode": "push" },
+						"resize": true
+					},
+					"modes": {
+						"repulse": { "distance": 100, "duration": 0.4 },
+						"push": { "particles_nb": 4 }
+					}
+				},
+				"retina_detect": true
+			});
+		</script>
+
+        <div id="wrapper">
+
+    <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="arrow-button">
+                    <img src="images/Prev_Arrow.jpg" alt="Next Page" width="30">
+                </a>
+                
+                <h1><strong>Rogue Blade</strong></h1>
+            </header>
+
+            <div id="main">
+
+                <!-- Content -->
+                    <section id="content" class="main">
+                        <h2><strong>About</strong></h2>
+                        <div class="education">
+                            <ul>
+                                <p>Rogue Blade is a top down wave type game where you need to protect your home from enemies. Each wave will have more number of enemies and player can buy blades and turrets to protect the home.
+                                </p>
+                        </ul>
+                        </div>
+                    </section>
+
+                    <section id="competition-certificates" class="main">
+                        <h2><strong>In Game shots</strong></h2>
+                        <div class="certificates-container">
+                            <ul class="certificates">
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img1.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img2.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img3.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img4.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img5.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                                <li>
+                                    <span class="image"><img src="others/rogue-blade/img6.png" onclick="openModal(this)" alt="Hackathon Certificate" /></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="certificate-modal" class="modal">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <img class="modal-content" id="modal-image">
+                        </div>
+
+                    </section>
+                    
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const container = document.querySelector(".certificates-container");
+                    
+                            container.addEventListener("wheel", function (event) {
+                                event.preventDefault();
+                                container.scrollLeft += event.deltaY; // Enable horizontal scrolling with mouse wheel
+                            });
+                        });
+
+                        // Open modal when clicking on a certificate
+                        function openModal(img) {
+                            let modal = document.getElementById("certificate-modal");
+                            let modalImg = document.getElementById("modal-image");
+                            modal.style.display = "flex";
+                            modalImg.src = img.src;
+                        }
+
+                        // Close modal when clicking anywhere outside the certificate
+                        document.getElementById("certificate-modal").addEventListener("click", function (event) {
+                            if (event.target !== document.getElementById("modal-image")) {
+                                closeModal();
+                            }
+                        });
+
+                        // Close modal function
+                        function closeModal() {
+                            document.getElementById("certificate-modal").style.display = "none";
+                        }
+
+                    </script>
+
+                    <section id="content" class="main">
+                        <h2><strong>Video</strong></h2>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="others/rogue-blade//vid1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div></br>
+                        <div class="button-container">
+                            <a href="https://github.com/LokiGameDev/RogueBlade" target="_blank" class="button small">GitHub</a>
+                            <a href="https://lokidevtamil.itch.io/rogue-blade" target="_blank" class="button small">Itchio</a>
+                        </div>
+                    </section>
+            </div>
+
+            <footer id="footer">
+                <section>
+                    <h2>My Links</h2>
+                    <ul class="icons">
+                        <li><a href="https://www.linkedrogue-blade//lokeshwarank/" class="icon brands fa-linkedin alt" target="_blank"><span class="label">LinkedIn</span></a></li>
+                        <li><a href="https://github.com/LokiGameDev" class="icon brands fa-github alt"  target="_blank"><span class="label">GitHub</span></a></li>
+                        <li><a href="https://lokidevtamil.itch.io/" class="icon brands fa-itch-io alt" target="_blank"><span class="label">Itchio</span></a></li>
+                        <li><a href="https://www.instagram.com/l._loki_.l/" class="icon brands fa-instagram alt" target="_blank"><span class="label">Instagram</span></a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Contact me</h2>
+                    <dl class="alt">
+                        <dt>Address</dt>
+                        <dd>13, M.G.T Pudur, Anjurampalayam, Anumapalli(Po), Arachalur(Via), Erode - 638101</dd>
+                        <dt>Phone</dt>
+                        <dd>+91 9597548511</dd>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:lokeshwarank007@gmail.com">lokeshwarank007@gmail.com</a></dd>
+                    </dl>
+                </section>
+                <p class="copyright" style="font-size: larger;"><i>"Player don't just play the game, they live in it"</i></p>
+            </footer>
+
+
+        </div>
+    </body>
+</html>
