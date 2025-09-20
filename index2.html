@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<title>Lokeshwaran K</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<script>
+		const part1 = "Hi, I am ";
+		const part2 = "Lokeshwaran K";
+		const fullText = part1 + part2;
+		let index = 0;
+	
+		function typeEffect() {
+			if (index < fullText.length) {
+				const typingTextEl = document.getElementById("typing-text");
+	
+				if (index < part1.length) {
+					typingTextEl.innerHTML += `<span style="color: #858585;">${part1.charAt(index)}</span>`;
+				} else {
+					typingTextEl.innerHTML += `<span style="color: #f3f3f3;">${part2.charAt(index - part1.length)}</span>`;
+				}
+	
+				index++;
+				setTimeout(typeEffect, 75);
+			}
+		}
+	
+		window.onload = function () {
+			typeEffect();
+		};
+	</script>
+	
+	<script>
+		document.querySelectorAll(".project-box").forEach(box => {
+			box.addEventListener("click", function (e) {
+				// Avoid triggering when clicking GitHub or Itchio buttons
+				if (!e.target.closest("a")) {
+					const link = box.getAttribute("data-link");
+					if (link) window.location.href = link;
+				}
+			});
+		});
+	</script>
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo">
+							<img src="images/logo.svg" alt="Logo">
+						</span>
+						<h1 id="typing-text"></h1>
+						<h3>Tamil Nadu, India</h3>
+						<h4>Unity Game developer</h4>
+						<p>
+							<a href="https://www.linkedin.com/in/lokeshwarank/" target="_blank">LinkedIn</a> , 
+							<a href="https://github.com/LokiGameDev" target="_blank">GitHub</a>
+						</p>
+						<p></br></p>
+						<a class="button primary2" href="images/Lokeshwaran K Resume.pdf" download>Download Resume</a>
+					</header>
+
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#projects" class="active">Projects</a></li>
+							<li><a href="#techstack">Tech stack</a></li>
+							<li><a href="#more">More</a></li>
+						</ul>
+					</nav>
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+						<section id="me" class="main">
+							<div class="spotlight">
+								<div class="content">
+									<p>Hi,
+										I am doing game development in Unity and learning new skills 
+										to create fun and interactive games. Looking for oppurtunities to work in a team.</p>
+								</div>
+								<span class="image spotlight"><img src="images/picMe.jpeg" alt="Photo"/></span>
+							</div>
+						</section>
+
+						<!-- Projects Section -->
+							<section id="projects" class="main special">
+								<header class="major">
+									<h2><strong>Projects</strong></h2>
+								</header>
+								<ul class="projects">
+									<li>
+										<span class="image"><img src="images/Games/picRB.jpg" alt="Project 3" width="250" height="150"/></span>
+										<h3><strong>Rogue Blade</strong></h3>
+										<p>A top down wave type action game.</p>
+										<br>
+										<a href="https://lokidevtamil.itch.io/rogue-blade" target="_blank" class="button small">Itchio</a>
+										<a href="https://github.com/LokiGameDev/RogueBlade" target="_blank" class="button small">GitHub</a>
+										<a href="rogue-blade.html" class="button small2">More details</a>
+									</li>
+									<li>
+										<span class="image"><img src="images/Games/picLIT.jpg" alt="Project 1" width="250" height="150"/></span>
+										<h3><strong>Locked In</strong></h3>
+										<p>A simple horror type maze game.</p>
+										<br>
+										<a href="https://lokidevtamil.itch.io/locked-in" target="_blank" class="button small">Itchio</a>
+										<a href="https://github.com/LokiGameDev/Locked-In-Game" target="_blank" class="button small">GitHub</a>
+										<a href="locked-in.html" class="button small2">More details</a>
+									</li>
+                  					<li>
+										<span class="image"><img src="images/Games/picIR.png" alt="Project 2" width="250" height="150"/></span>
+										<h3><strong>Indie runner</strong></h3>
+										<p>An endless runner game.</p>
+                    					<br>
+										<a href="https://lokidevtamil.itch.io/indie-runner" target="_blank" class="button small">Itchio</a>
+										<a href="https://github.com/LokiGameDev/Indie-Runner-Game" target="_blank" class="button small">GitHub</a>
+										<a href="Indie-runner.html" class="button small2">More details</a>
+									</li>
+								</ul>
+							</section>
+
+
+						<!-- First Section -->
+							<section id="techstack" class="main special">
+								<header class="major">
+									<h2><strong>Tech stack</strong></h2>
+								</header>
+								<ul class="skills">
+									<li>
+										<img src="images/Tech_logo/picUL.png" alt="Unity">
+										<span>Unity</span>
+									</li>
+									<li>
+										<img src="images/Tech_logo/picBL.png" alt="Blender">
+										<span>Blender</span>
+									</li>
+									<li>
+										<img src="images/Tech_logo/picKL.png" alt="Krita">
+										<span>Krita</span>
+									</li>
+								</ul>
+								<ul class="skills">
+									<li>
+										<img src="images/Tech_logo/picCS.png" alt="C#">
+										<span>C#</span>
+									</li>
+								</ul>
+
+							</section>
+						
+
+						<!-- Get Started -->
+							<section id="more" class="main special">
+								<header class="major">
+									<h2><strong>More about me</strong></h2>
+								</header>
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="more-about.html" class="button primary">About me</a></li>
+									</ul>
+								</footer>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>My Links</h2>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/lokeshwarank/" class="icon brands fa-linkedin alt" target="_blank"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/LokiGameDev" class="icon brands fa-github alt"  target="_blank"><span class="label">GitHub</span></a></li>
+								<li><a href="https://lokidevtamil.itch.io/" class="icon brands fa-itch-io alt" target="_blank"><span class="label">Itchio</span></a></li>
+								<!-- <li><a href="https://www.instagram.com/l._loki_.l/" class="icon brands fa-instagram alt" target="_blank"><span class="label">Instagram</span></a></li> -->
+							</ul>
+						</section>
+						<section>
+							<h2>Contact me</h2>
+							<dl class="alt">
+								<dt>Phone</dt>
+								<dd>+91 9597548511</dd>
+								<dt>Email</dt>
+								<dd><a href="mailto:lokeshwarank007@gmail.com">lokeshwarank007@gmail.com</a></dd>
+							</dl>
+						</section>
+						<p class="copyright" style="font-size: larger;"><i>"Player don't just play the game, they live in it"</i></p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

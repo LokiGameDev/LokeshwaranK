@@ -1,211 +1,579 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
-		<title>Lokeshwaran K</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<script>
-		const part1 = "Hi, I am ";
-		const part2 = "Lokeshwaran K";
-		const fullText = part1 + part2;
-		let index = 0;
-	
-		function typeEffect() {
-			if (index < fullText.length) {
-				const typingTextEl = document.getElementById("typing-text");
-	
-				if (index < part1.length) {
-					typingTextEl.innerHTML += `<span style="color: #858585;">${part1.charAt(index)}</span>`;
-				} else {
-					typingTextEl.innerHTML += `<span style="color: #f3f3f3;">${part2.charAt(index - part1.length)}</span>`;
-				}
-	
-				index++;
-				setTimeout(typeEffect, 75);
-			}
-		}
-	
-		window.onload = function () {
-			typeEffect();
-		};
-	</script>
-	
-	<script>
-		document.querySelectorAll(".project-box").forEach(box => {
-			box.addEventListener("click", function (e) {
-				// Avoid triggering when clicking GitHub or Itchio buttons
-				if (!e.target.closest("a")) {
-					const link = box.getAttribute("data-link");
-					if (link) window.location.href = link;
-				}
-			});
-		});
-	</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokeshwaran K - Unity Game Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Tinos', serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-y: scroll;           /* Keep vertical scrolling */
+            -ms-overflow-style: none;     /* IE and old Edge */
+            scrollbar-width: none; 
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
 
-	<body class="is-preload">
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: #000000;
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        /* General Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo">
-							<img src="images/logo.svg" alt="Logo">
-						</span>
-						<h1 id="typing-text"></h1>
-						<h3>Tamil Nadu, India</h3>
-						<h4>Unity Game developer</h4>
-						<p>
-							<a href="https://www.linkedin.com/in/lokeshwarank/" target="_blank">LinkedIn</a> , 
-							<a href="https://github.com/LokiGameDev" target="_blank">GitHub</a>
-						</p>
-						<p></br></p>
-						<a class="button primary2" href="images/Lokeshwaran K Resume.pdf" download>Download Resume</a>
-					</header>
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-900 { animation-delay: 0.9s; }
+        .delay-1000 { animation-delay: 1.0s; }
+
+        /* Component Styles */
+        .tech-icon {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .tech-icon:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+        }
+        .action-button {
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+            border: 1px solid #aaa;
+        }
+        .action-button:hover {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+        .action-button:active {
+            transform: scale(0.95);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+        }
+        .nav-link.active::after {
+             width: 100%;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2rem;
+            background-color: #ffffff;
+            animation: blink 0.7s infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .section-divider {
+             width: 5rem;
+             height: 2px;
+             background-color: #ffffff;
+             margin: 1rem auto 4rem auto;
+        }
+        .form-input {
+            background-color: #111;
+            border: 1px solid #555;
+            color: #fff;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Project Accordion Styles */
+        .project-card {
+            border: 1px solid #444;
+            border-radius: 0.75rem; /* 12px */
+            overflow: hidden;
+            background-color: #0a0a0a;
+            transition: background-color 0.3s ease;
+        }
+        .project-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            background-color: #111;
+        }
+        .plus-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            font-weight: 200;
+            color: #888;
+            transition: transform 0.4s ease, color 0.3s ease;
+        }
+        .project-header:hover .plus-icon {
+            color: #fff;
+        }
+        .project-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 1.5rem;
+        }
+        /* Active state */
+        .project-card.active .project-content {
+            max-height: 800px; /* Increased max-height for gallery */
+            padding: 0 1.5rem; /* Removed bottom padding, will be applied to inner grid */
+        }
+        .project-card.active .plus-icon {
+            transform: rotate(45deg);
+            color: #fff;
+        }
+        .gallery-thumbnail {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        /* Video & Image Modal Styles */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-content {
+             transform: scale(0.95);
+             transition: transform 0.3s ease;
+        }
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none; /* Chrome, Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="particles-js"></div>
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 left-0 w-full p-6 md:p-8 lg:p-10 z-20 bg-black/50 backdrop-blur-sm">
+        <div class="flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                <a href="#home" class="nav-link no-select">Lokeshwaran K</a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-gray-400">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#about" class="nav-link">About me</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="md:hidden"></div>
+        </div>
+    </header>
+    
+    <!-- HOME SECTION -->
+    <section id="home" class="relative min-h-screen w-full py-8 flex flex-col items-center justify-center">
+        <main class="container mx-auto flex-grow flex items-center pt-20">
+            <div class="w-full grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                <div class="lg:col-span-2 w-full flex justify-center lg:justify-center">
+                    <div class="w-64 h-80 md:w-80 md:h-96 bg-black backdrop-blur-sm border border-gray-700 rounded-2xl shadow-2xl shadow-black/50 fade-in-up delay-500"></div>
+                </div>
+                <div class="lg:col-span-3 text-center lg:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter fade-in-up delay-600 no-select">Lokeshwaran K</h1>
+                    <h2 class="text-xl md:text-2xl text-gray-200 mt-2 font-medium fade-in-up delay-700 no-select">
+                        <span id="typing-effect"></span><span class="typing-cursor"></span>
+                    </h2>
+                    <p class="mt-6 max-w-xl mx-auto lg:mx-0 text-gray-300 leading-relaxed fade-in-up delay-800 no-select">
+                        Hi, I am doing game development in Unity and learning new skills to create fun and interactive games. Looking for opportunities to work in a team.
+                    </p>
+                    <div class="mt-8 flex justify-center lg:justify-start items-center space-x-4 fade-in-up delay-900">
+                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
+                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
+                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
+                    </div>
+                    <div class="mt-10 fade-in-up delay-1000">
+                        <h3 class="text-lg font-semibold text-white tracking-wide no-select">Tech Stack</h3>
+                        <div class="flex justify-center lg:justify-start items-center space-x-6 mt-4">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-10 w-10 tech-icon" title="Unity" style="filter: invert(1);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-10 w-10 tech-icon" title="C#" style="filter: invert(1);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-10 w-10 tech-icon" title="Blender" style="filter: invert(1);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/git.png" alt="Git" class="h-10 w-10 tech-icon" title="Git" style="filter: invert(1);">
+                        </div>
+                     <div class="mt-12 fade-in-up" style="animation-delay: 1.1s;">
+                          <button class="action-button text-white font-semibold py-3 px-8 rounded-lg">Download Resume</button>
+                     </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="w-full min-h-screen py-24 flex flex-col items-center justify-center">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">Projects</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="w-full max-w-4xl mx-auto space-y-4">
+                <!-- Project Card 1 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="https://placehold.co/100x60/0a0a0a/FFFFFF?text=P1" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Project Title 1</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A short, engaging description of the first project.</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="https://placehold.co/800x450/111/fff?text=Main+Image" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="https://placehold.co/200x150/222/fff?text=sub1" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="https://placehold.co/200x150/222/fff?text=sub2" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="https://placehold.co/200x150/222/fff?text=sub3" class="rounded-md cursor-pointer gallery-thumbnail">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                    This is the expanded description for Project 1. Here, you can elaborate on the game's concept, your role, and any challenges you overcame.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(1);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(1);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-7 w-7" title="Blender" style="filter: invert(1);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                        <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                        <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                        <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="dQw4w9WgXcQ">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="https://placehold.co/100x60/0a0a0a/FFFFFF?text=P2" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Project Title 2</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A brief summary of what the second project is about.</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                       <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="https://placehold.co/800x450/111/fff?text=Main+Image" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="https://placehold.co/200x150/222/fff?text=sub1" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="https://placehold.co/200x150/222/fff?text=sub2" class="rounded-md cursor-pointer gallery-thumbnail">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                   Detailed description for Project 2, highlighting different skills or a unique development process. Talk about the core mechanics and what makes it special.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(1);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(1);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                         <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                         <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                         <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="L_LUpnjgPso">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="w-full min-h-screen py-24 flex flex-col items-center justify-center">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">About Me</h2>
+            <div class="section-divider reveal"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
+                <div class="reveal no-select">
+                    <h3 class="text-2xl font-bold mb-4">Education</h3>
+                    <div class="border border-gray-700 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold">Degree Name</h4>
+                        <p class="text-gray-400">University Name | 20XX - 20XX</p>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-4 no-select">Certificates</h3>
+                    <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="https://placehold.co/1200x800/111/fff?text=Certificate+Image">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="text-xl font-semibold">Certificate in Something</h4>
+                                <p class="text-gray-400">Issuing Organization</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal md:col-span-2 no-select" style="transition-delay: 0.4s;">
+                     <h3 class="text-2xl font-bold mb-4 mt-8">Participation</h3>
+                     <div class="border border-gray-700 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold">Game Jam or Event Name</h4>
+                        <p class="text-gray-400">Description of your participation or achievement.</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="w-full min-h-screen py-24 flex flex-col items-center justify-center">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">Contact Me</h2>
+             <div class="section-divider reveal"></div>
+             <p class="text-center text-gray-400 max-w-2xl mx-auto mb-12 reveal no-select">
+                 Have a project in mind or just want to say hello? Feel free to send me a message.
+             </p>
+            <form class="max-w-xl mx-auto reveal">
+                <div class="mb-4">
+                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 rounded-md form-input transition-all duration-300">
+                </div>
+                 <div class="mb-4">
+                    <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input transition-all duration-300">
+                </div>
+                 <div class="mb-6">
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" class="w-full p-3 rounded-md form-input transition-all duration-300"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="action-button text-white font-semibold py-3 px-12 rounded-lg">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <footer class="text-center p-6 text-gray-500 text-sm no-select">
+        <p>&copy; 2024 Lokeshwaran K. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-black border border-gray-700 w-full max-w-4xl rounded-lg shadow-xl">
+            <div class="relative" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe id="video-iframe" class="absolute top-0 left-0 w-full h-full" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+        <button id="close-modal-button" class="absolute top-4 right-4 text-white text-4xl font-thin leading-none">&times;</button>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-black border border-gray-700 w-full max-w-5xl rounded-lg shadow-xl p-2">
+            <img id="certificate-image" src="" alt="Certificate Image" class="w-full h-auto object-contain max-h-[90vh] rounded-md">
+        </div>
+        <button id="close-image-modal-button" class="absolute top-4 right-4 text-white text-4xl font-thin leading-none">&times;</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // --- Particle.js Configuration ---
+        particlesJS('particles-js', {
+             "particles": { "number": { "value": 50, "density": { "enable": true, "value_area": 800 }}, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2, "random": true }, "size": { "value": 2, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }}, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true }, "modes": { "grab": { "distance": 140, "line_opacity": 0.4 }}}, "retina_detect": true
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Typing Effect ---
+            const textToType = "Unity Game Developer";
+            const typingElement = document.getElementById('typing-effect');
+            let i = 0;
+            function typeWriter() {
+                if (i < textToType.length) {
+                    typingElement.innerHTML += textToType.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            setTimeout(typeWriter, 1000); 
+
+            // --- Reveal on Scroll Animation ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // --- Project Accordion Logic ---
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                const header = card.querySelector('.project-header');
+                const content = card.querySelector('.project-content');
+                header.addEventListener('click', () => {
+                    const wasActive = card.classList.contains('active');
+                    
+                    projectCards.forEach(c => {
+                        c.classList.remove('active');
+                        c.querySelector('.project-content').style.maxHeight = null;
+                    });
+                    
+                    if (!wasActive) {
+                        card.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // --- Video Modal Logic ---
+            const videoModal = document.getElementById('video-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const videoIframe = document.getElementById('video-iframe');
+            const trailerButtons = document.querySelectorAll('.trailer-button');
+
+            trailerButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevents the accordion from closing
+                    const videoId = button.dataset.videoId;
+                    if (videoId) {
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                        videoModal.classList.add('active');
+                    }
+                });
+            });
+
+            function closeModal() {
+                videoModal.classList.remove('active');
+                videoIframe.src = ''; // Stop the video
+            }
+
+            closeModalButton.addEventListener('click', closeModal);
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeModal();
+                }
+            });
+
+            // --- Certificate Image Modal Logic ---
+            const imageModal = document.getElementById('image-modal');
+            const closeImageModalButton = document.getElementById('close-image-modal-button');
+            const certificateImage = document.getElementById('certificate-image');
+            const certificateItems = document.querySelectorAll('.certificate-item');
+
+            certificateItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const imageUrl = item.dataset.certImage;
+                    if (imageUrl) {
+                        certificateImage.src = imageUrl;
+                        imageModal.classList.add('active');
+                    }
+                });
+            });
+
+            function closeImageModal() {
+                imageModal.classList.remove('active');
+                certificateImage.src = ''; // Clear image src
+            }
+
+            closeImageModalButton.addEventListener('click', closeImageModal);
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
 
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#projects" class="active">Projects</a></li>
-							<li><a href="#techstack">Tech stack</a></li>
-							<li><a href="#more">More</a></li>
-						</ul>
-					</nav>
-
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Introduction -->
-						<section id="me" class="main">
-							<div class="spotlight">
-								<div class="content">
-									<p>Hi,
-										I am doing game development in Unity and learning new skills 
-										to create fun and interactive games. Looking for oppurtunities to work in a team.</p>
-								</div>
-								<span class="image spotlight"><img src="images/picMe.jpeg" alt="Photo"/></span>
-							</div>
-						</section>
-
-						<!-- Projects Section -->
-							<section id="projects" class="main special">
-								<header class="major">
-									<h2><strong>Projects</strong></h2>
-								</header>
-								<ul class="projects">
-									<li>
-										<span class="image"><img src="images/Games/picRB.jpg" alt="Project 3" width="250" height="150"/></span>
-										<h3><strong>Rogue Blade</strong></h3>
-										<p>A top down wave type action game.</p>
-										<br>
-										<a href="https://lokidevtamil.itch.io/rogue-blade" target="_blank" class="button small">Itchio</a>
-										<a href="https://github.com/LokiGameDev/RogueBlade" target="_blank" class="button small">GitHub</a>
-										<a href="rogue-blade.html" class="button small2">More details</a>
-									</li>
-									<li>
-										<span class="image"><img src="images/Games/picLIT.jpg" alt="Project 1" width="250" height="150"/></span>
-										<h3><strong>Locked In</strong></h3>
-										<p>A simple horror type maze game.</p>
-										<br>
-										<a href="https://lokidevtamil.itch.io/locked-in" target="_blank" class="button small">Itchio</a>
-										<a href="https://github.com/LokiGameDev/Locked-In-Game" target="_blank" class="button small">GitHub</a>
-										<a href="locked-in.html" class="button small2">More details</a>
-									</li>
-                  					<li>
-										<span class="image"><img src="images/Games/picIR.png" alt="Project 2" width="250" height="150"/></span>
-										<h3><strong>Indie runner</strong></h3>
-										<p>An endless runner game.</p>
-                    					<br>
-										<a href="https://lokidevtamil.itch.io/indie-runner" target="_blank" class="button small">Itchio</a>
-										<a href="https://github.com/LokiGameDev/Indie-Runner-Game" target="_blank" class="button small">GitHub</a>
-										<a href="Indie-runner.html" class="button small2">More details</a>
-									</li>
-								</ul>
-							</section>
-
-
-						<!-- First Section -->
-							<section id="techstack" class="main special">
-								<header class="major">
-									<h2><strong>Tech stack</strong></h2>
-								</header>
-								<ul class="skills">
-									<li>
-										<img src="images/Tech_logo/picUL.png" alt="Unity">
-										<span>Unity</span>
-									</li>
-									<li>
-										<img src="images/Tech_logo/picBL.png" alt="Blender">
-										<span>Blender</span>
-									</li>
-									<li>
-										<img src="images/Tech_logo/picKL.png" alt="Krita">
-										<span>Krita</span>
-									</li>
-								</ul>
-								<ul class="skills">
-									<li>
-										<img src="images/Tech_logo/picCS.png" alt="C#">
-										<span>C#</span>
-									</li>
-								</ul>
-
-							</section>
-						
-
-						<!-- Get Started -->
-							<section id="more" class="main special">
-								<header class="major">
-									<h2><strong>More about me</strong></h2>
-								</header>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="more-about.html" class="button primary">About me</a></li>
-									</ul>
-								</footer>
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<h2>My Links</h2>
-							<ul class="icons">
-								<li><a href="https://www.linkedin.com/in/lokeshwarank/" class="icon brands fa-linkedin alt" target="_blank"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://github.com/LokiGameDev" class="icon brands fa-github alt"  target="_blank"><span class="label">GitHub</span></a></li>
-								<li><a href="https://lokidevtamil.itch.io/" class="icon brands fa-itch-io alt" target="_blank"><span class="label">Itchio</span></a></li>
-								<!-- <li><a href="https://www.instagram.com/l._loki_.l/" class="icon brands fa-instagram alt" target="_blank"><span class="label">Instagram</span></a></li> -->
-							</ul>
-						</section>
-						<section>
-							<h2>Contact me</h2>
-							<dl class="alt">
-								<dt>Phone</dt>
-								<dd>+91 9597548511</dd>
-								<dt>Email</dt>
-								<dd><a href="mailto:lokeshwarank007@gmail.com">lokeshwarank007@gmail.com</a></dd>
-							</dl>
-						</section>
-						<p class="copyright" style="font-size: larger;"><i>"Player don't just play the game, they live in it"</i></p>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if(link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            sections.forEach(section => sectionObserver.observe(section));
+        });
+    </script>
+</body>
 </html>
+
+
+
