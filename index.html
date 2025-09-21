@@ -257,6 +257,40 @@
             -webkit-text-stroke: 1px transparent;
             text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Certificate Slider */
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-page {
+            flex-shrink: 0;
+            width: 100%;
+            padding: 0 0.5rem;
+        }
+        .slider-dots {
+            text-align: center;
+            padding-top: 1.5rem;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #444;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: #fff;
+        }
+
+
     </style>
 </head>
 
@@ -295,7 +329,7 @@
         <main class="container mx-auto flex-grow flex items-center pt-20">
             <div class="w-full grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
                 <div class="lg:col-span-2 w-full flex justify-center lg:justify-center">
-                    <img src="images/picMe.jpeg" alt="A photo of Lokeshwaran K" class="w-64 h-80 md:w-80 md:h-96 object-cover border border-gray-700 rounded-2xl shadow-2xl shadow-black/50 fade-in-up delay-500">
+                    <img src="images/2.jpg" alt="A photo of Lokeshwaran K" class="w-64 h-80 md:w-80 md:h-96 object-cover border border-gray-700 rounded-2xl shadow-2xl shadow-black/50 fade-in-up delay-500">
                 </div>
                 <div class="lg:col-span-3 text-center lg:text-left">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter fade-in-up delay-600 no-select">Lokeshwaran K</h1>
@@ -483,7 +517,7 @@
             <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">About Me</h2>
             <div class="section-divider reveal"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
-                <div class="reveal no-select">
+                <div class="reveal no-select space-y-2">
                     <h3 class="text-2xl font-bold mb-4">Education</h3>
                     <div class="border border-gray-700 p-6 rounded-lg">
                         <h4 class="text-xl font-semibold">B.E in Electronics and Communication Engineering</h4>
@@ -500,7 +534,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="reveal" style="transition-delay: 0.2s;">
+
+                <div class="reveal space-y-2" style="transition-delay: 0.2s;">
                     <h3 class="text-2xl font-bold mb-4 no-select">Certificates</h3>
                     <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Cert/Cert1.jpg">
                         <div class="flex justify-between items-center">
@@ -539,13 +574,105 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="reveal md:col-span-2 no-select" style="transition-delay: 0.4s;">
-                     <h3 class="text-2xl font-bold mb-4 mt-8">Participation</h3>
+
+                <div class="reveal md:col-span-2" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-4 mt-8">Achievements</h3>
+                    <div id="cert-slider" class="relative">
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <!-- Page 1 -->
+                                <div class="slider-page">
+                                    <div class="space-y-2">
+                                        <!-- Certificate 1 -->
+                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert1.jpg">
+                                            <div class="flex justify-between items-center">
+                                                <div>
+                                                    <h4 class="text-xl font-semibold">Neo Codathon (KEC) - Top 25</h4>
+                                                    <p class="text-gray-400">Secured a place in top 25 in coding competition for overall college,KEC.</p>
+                                                </div>
+                                                <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="images/Cert/Cert1.jpg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Certificate 2 -->
+                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert2.jpg">
+                                            <div class="flex justify-between items-center">
+                                                <div>
+                                                    <h4 class="text-xl font-semibold">Gen AI Hackathon - Top 25</h4>
+                                                    <p class="text-gray-400">Event NameGot in top 25 in a National level hackathon by Intel and KPRIET.</p>
+                                                </div>
+                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Certificate 3 -->
+                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert3.jpg">
+                                            <div class="flex justify-between items-center">
+                                                <div>
+                                                    <h4 class="text-xl font-semibold">Codathon (KEC) - 1st Place</h4>
+                                                    <p class="text-gray-400">Secured 1st place in intra department level coding competition,KEC.</p>
+                                                </div>
+                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Page 2 -->
+                                <div class="slider-page">
+                                    <div class="space-y-4">
+                                         <!-- Certificate 4 -->
+                                         <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert4.jpg">
+                                            <div class="flex justify-between items-center">
+                                                <div>
+                                                    <h4 class="text-xl font-semibold">Ideathon'24 - 2nd Place</h4>
+                                                    <p class="text-gray-400">Secured second place for our idea in Ideathon'24 ECE,KEC.</p>
+                                                </div>
+                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4"  data-cert-image="images/Cert/Cert1.jpg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Certificate 5 -->
+                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert5.jpg">
+                                            <div class="flex justify-between items-center">
+                                                <div>
+                                                    <h4 class="text-xl font-semibold">Line Follower - 3rd Place</h4>
+                                                    <p class="text-gray-400">Issuing Organization 5Line Follower - 3rd Place</p>
+                                                </div>
+                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                </div>
+
+                <div class="reveal col-span-2 no-select space-y-2" style="transition-delay: 0.4s;">
+                     <h3 class="text-2xl font-bold mb-4 mt-8">Memberships</h3>
                      <div class="border border-gray-700 p-6 rounded-lg">
-                        <h4 class="text-xl font-semibold">Game Jam or Event Name</h4>
-                        <p class="text-gray-400">Description of your participation or achievement.</p>
-                     </div>
-                </div> -->
+                        <h4 class="text-xl font-semibold">Secreatary</h4>
+                        <p class="text-gray-400 flex justify-between items-center">
+                            <span>ECE Association, Kongu Engineering College</span>
+                            <span>2025 - Present</span>
+                        </p>
+                    </div>
+                    <div class="border border-gray-700 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold">Executive Membeer</h4>
+                        <p class="text-gray-400 flex justify-between items-center">
+                            <span>Rotaract Club, Kongu Engineering College</span>
+                            <span>2023 - Present</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -582,7 +709,7 @@
     </section>
 
     <footer class="text-center p-6 text-gray-500 text-sm no-select">
-        <p>&copy;Lokeshwaran K.</p>
+        <p>&copy; Lokeshwaran K.</p>
     </footer>
 
     <!-- Video Modal -->
@@ -710,6 +837,51 @@
                     closeImageModal();
                 }
             });
+
+            function setupSlider(sliderId) {
+                const slider = document.getElementById(sliderId);
+                if (!slider) return;
+
+                const wrapper = slider.querySelector('.slider-wrapper');
+                const pages = slider.querySelectorAll('.slider-page');
+                const dotsContainer = slider.querySelector('.slider-dots');
+                
+                if (!wrapper || !pages.length || !dotsContainer) return;
+
+                let currentPage = 0;
+                const pageCount = pages.length;
+
+                function goToPage(pageIndex) {
+                    currentPage = pageIndex;
+                    const offset = -currentPage * 100;
+                    wrapper.style.transform = `translateX(${offset}%)`;
+                    updateNav();
+                }
+
+                function updateNav() {
+                    const dots = dotsContainer.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentPage);
+                    });
+                }
+                
+                function init() {
+                    dotsContainer.innerHTML = '';
+                    if (pageCount > 1) {
+                        for (let i = 0; i < pageCount; i++) {
+                            const dot = document.createElement('button');
+                            dot.classList.add('dot');
+                            dot.addEventListener('click', () => goToPage(i));
+                            dotsContainer.appendChild(dot);
+                        }
+                    }
+                    goToPage(0);
+                }
+                
+                init();
+            }
+            
+            setupSlider('cert-slider');
 
 
             // --- Active Nav Link on Scroll ---
