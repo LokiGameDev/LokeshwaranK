@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokeshwaran K - Unity Game Developer</title>
@@ -206,17 +207,78 @@
             -ms-user-select: none;     /* IE/Edge */
             pointer-events: none;
         }
+
+        .no-select-head {
+            user-select: none;
+            -webkit-user-select: none; /* Chrome, Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+        }
+
+        @keyframes spread-in {
+            from {
+                letter-spacing: -0.5em;
+                opacity: 0;
+            }
+            to {
+                letter-spacing: 0.1em;
+                opacity: 1;
+            }
+        }
+        .quote-animation.visible {
+            animation: spread-in 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+        }
+
+        /* Name Hover Animation */
+        .name-animation-container {
+            display: flex;
+            font-size: 1.5rem; /* Corresponds to text-2xl */
+            font-weight: 700; /* Corresponds to font-bold */
+            cursor: default; /* Remove text cursor */
+        }
+
+        .name-animation-container .hover {
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+
+        .name-animation-container h1 {
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffff;
+            text-shadow: none;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0 1px; /* Add slight spacing between letters */
+        }
+
+        .name-animation-container .hover:hover h1 {
+            transform: scale(1.5) translateY(-5px);
+            color: #ffffff;
+            -webkit-text-stroke: 1px transparent;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
+
 <body class="antialiased">
 
     <div id="particles-js"></div>
 
     <!-- Header/Navbar -->
-    <header class="fixed top-0 left-0 w-full p-6 md:p-8 lg:p-10 z-20 bg-black/50 backdrop-blur-sm">
-        <div class="flex justify-between items-center">
-            <div class="text-2xl font-bold">
-                <a href="#home" class="nav-link no-select">Lokeshwaran K</a>
+    <header class="fixed top-0 left-0 w-full z-20 bg-black/50 backdrop-blur-sm">
+        <div class="px-6 py-4 flex justify-between items-center">
+             <div class="name-animation-container no-select-head">
+                <div class="hover"><h1>L</h1></div>
+                <div class="hover"><h1>o</h1></div>
+                <div class="hover"><h1>k</h1></div>
+                <div class="hover"><h1>e</h1></div>
+                <div class="hover"><h1>s</h1></div>
+                <div class="hover"><h1>h</h1></div>
+                <div class="hover"><h1>w</h1></div>
+                <div class="hover"><h1>a</h1></div>
+                <div class="hover"><h1>r</h1></div>
+                <div class="hover"><h1>a</h1></div>
+                <div class="hover"><h1>n</h1></div>
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-gray-400">
                 <a href="#home" class="nav-link">Home</a>
@@ -233,7 +295,7 @@
         <main class="container mx-auto flex-grow flex items-center pt-20">
             <div class="w-full grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
                 <div class="lg:col-span-2 w-full flex justify-center lg:justify-center">
-                    <div class="w-64 h-80 md:w-80 md:h-96 bg-black backdrop-blur-sm border border-gray-700 rounded-2xl shadow-2xl shadow-black/50 fade-in-up delay-500"></div>
+                    <img src="images/picMe.jpeg" alt="A photo of Lokeshwaran K" class="w-64 h-80 md:w-80 md:h-96 object-cover border border-gray-700 rounded-2xl shadow-2xl shadow-black/50 fade-in-up delay-500">
                 </div>
                 <div class="lg:col-span-3 text-center lg:text-left">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter fade-in-up delay-600 no-select">Lokeshwaran K</h1>
@@ -244,20 +306,29 @@
                         Hi, I am doing game development in Unity and learning new skills to create fun and interactive games. Looking for opportunities to work in a team.
                     </p>
                     <div class="mt-8 flex justify-center lg:justify-start items-center space-x-4 fade-in-up delay-900">
-                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
-                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
-                         <a href="#" class="w-10 h-10 bg-black border border-gray-600 rounded-lg hover:bg-white transition-colors"></a>
+                         <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/lokeshwarank/" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="LinkedIn">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" class="h-6 w-6" style="filter: invert(0);">
+                        </a>
+                        <!-- GitHub -->
+                        <a href="https://github.com/LokiGameDev" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="GitHub">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub" class="h-6 w-6" style="filter: invert(0);">
+                        </a>
+                        <!-- itch.io -->
+                        <a href="https://lokidevtamil.itch.io/" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="itch.io">
+                            <svg class="h-6 w-6 text-white" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.833 0A4.84 4.84 0 0 0 0 4.833v14.334A4.84 4.84 0 0 0 4.833 24h14.334A4.84 4.84 0 0 0 24 19.167V4.833A4.84 4.84 0 0 0 19.167 0zm.26 5.48h3.328c.28 0 .506.227.506.507v.228a.507.507 0 0 1-.506.506H5.093a.507.507 0 0 1-.506-.506v-.228c0-.28.226-.507.506-.507zm8.414 0h3.328c.28 0 .506.227.506.507v.228a.507.507 0 0 1-.506.506h-3.328a.507.507 0 0 1-.506-.506v-.228c0-.28.226-.507.506-.507zm-4.447 2.454c2.515 0 4.555 2.04 4.555 4.555s-2.04 4.555-4.555 4.555-4.555-2.04-4.555-4.555 2.04-4.555 4.555-4.555z"/></svg>
+                        </a>
                     </div>
                     <div class="mt-10 fade-in-up delay-1000">
                         <h3 class="text-lg font-semibold text-white tracking-wide no-select">Tech Stack</h3>
                         <div class="flex justify-center lg:justify-start items-center space-x-6 mt-4">
-                             <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-10 w-10 tech-icon" title="Unity" style="filter: invert(1);">
-                             <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-10 w-10 tech-icon" title="C#" style="filter: invert(1);">
-                             <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-10 w-10 tech-icon" title="Blender" style="filter: invert(1);">
-                             <img src="https://img.icons8.com/ios-filled/50/ffffff/git.png" alt="Git" class="h-10 w-10 tech-icon" title="Git" style="filter: invert(1);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-10 w-10 tech-icon" title="Unity" style="filter: invert(0);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-10 w-10 tech-icon" title="C#" style="filter: invert(0);">
+                             <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-10 w-10 tech-icon" title="Blender" style="filter: invert(0);">
+                             <img src="https://img.icons8.com/?size=100&id=A6WwODb5ChNB&format=png&color=ffffff" alt="Krita" class="h-10 w-10 tech-icon" title="Krita" style="filter: invert(0);">
                         </div>
                      <div class="mt-12 fade-in-up" style="animation-delay: 1.1s;">
-                          <button class="action-button text-white font-semibold py-3 px-8 rounded-lg">Download Resume</button>
+                          <button class="action-button text-white font-semibold py-3 px-8 rounded-lg" href="images/Lokeshwaran K Resume.pdf" download>Download Resume</button>
                      </div>
                     </div>
                 </div>
@@ -275,10 +346,10 @@
                 <!-- Project Card 1 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="https://placehold.co/100x60/0a0a0a/FFFFFF?text=P1" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/picRB.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
-                            <h3 class="text-xl md:text-2xl font-bold text-white">Project Title 1</h3>
-                            <p class="text-gray-400 text-sm md:text-base mt-1">A short, engaging description of the first project.</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Rogue Blade</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A top down wave type action game.</p>
                         </div>
                         <div class="plus-icon ml-4">+</div>
                     </div>
@@ -286,27 +357,30 @@
                         <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
                             <div class="md:col-span-3">
                                 <!-- Image Gallery -->
-                                <img src="https://placehold.co/800x450/111/fff?text=Main+Image" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <img src="images/Games/RB/RB1.png" alt="Project Main Image" class="rounded-lg w-full mb-3">
                                 <div class="grid grid-cols-3 gap-3">
-                                    <img src="https://placehold.co/200x150/222/fff?text=sub1" class="rounded-md cursor-pointer gallery-thumbnail">
-                                    <img src="https://placehold.co/200x150/222/fff?text=sub2" class="rounded-md cursor-pointer gallery-thumbnail">
-                                    <img src="https://placehold.co/200x150/222/fff?text=sub3" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB2.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB3.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB4.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB5.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB6.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/RB/RB7.png" class="rounded-md cursor-pointer gallery-thumbnail">
                                 </div>
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                    This is the expanded description for Project 1. Here, you can elaborate on the game's concept, your role, and any challenges you overcame.
+                                    Rogue Blade is a top down wave type game where you need to protect your home from enemies. Each wave will have more number of enemies and player can buy blades and turrets to protect the home.
                                 </p>
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
                                         <h4 class="text-sm font-semibold mr-2">Tech:</h4>
-                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(1);">
-                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(1);">
-                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-7 w-7" title="Blender" style="filter: invert(1);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-7 w-7" title="Blender" style="filter: invert(0);">
                                     </div>
                                     <div class="flex flex-col space-y-3">
-                                        <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
-                                        <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                        <a href="https://lokidevtamil.itch.io/rogue-blade" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                        <a href="https://github.com/LokiGameDev/RogueBlade" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
                                         <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="dQw4w9WgXcQ">Trailer</a>
                                     </div>
                                 </div>
@@ -318,10 +392,10 @@
                 <!-- Project Card 2 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="https://placehold.co/100x60/0a0a0a/FFFFFF?text=P2" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/picLIT.jpg" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
-                            <h3 class="text-xl md:text-2xl font-bold text-white">Project Title 2</h3>
-                            <p class="text-gray-400 text-sm md:text-base mt-1">A brief summary of what the second project is about.</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Locked In</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A simple horror type maze game.</p>
                         </div>
                         <div class="plus-icon ml-4">+</div>
                     </div>
@@ -329,25 +403,26 @@
                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
                             <div class="md:col-span-3">
                                 <!-- Image Gallery -->
-                                <img src="https://placehold.co/800x450/111/fff?text=Main+Image" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <img src="images/Games/LI/LI1.jpg" alt="Project Main Image" class="rounded-lg w-full mb-3">
                                 <div class="grid grid-cols-3 gap-3">
-                                    <img src="https://placehold.co/200x150/222/fff?text=sub1" class="rounded-md cursor-pointer gallery-thumbnail">
-                                    <img src="https://placehold.co/200x150/222/fff?text=sub2" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/LI/LI2.jpg" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/LI/LI3.jpg" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/LI/LI4.jpg" class="rounded-md cursor-pointer gallery-thumbnail">
                                 </div>
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                   Detailed description for Project 2, highlighting different skills or a unique development process. Talk about the core mechanics and what makes it special.
+                                   A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you found will unlock a new type of enemy into the maze.A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you found will unlock a new type of enemy into the maze.
                                 </p>
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
                                         <h4 class="text-sm font-semibold mr-2">Tech:</h4>
-                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(1);">
-                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(1);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
                                     </div>
                                     <div class="flex flex-col space-y-3">
-                                         <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
-                                         <a href="#" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                         <a href="https://lokidevtamil.itch.io/locked-in" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                         <a href="https://github.com/LokiGameDev/Locked-In-Game" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
                                          <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="L_LUpnjgPso">Trailer</a>
                                     </div>
                                 </div>
@@ -355,6 +430,49 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="images/Games/picIR.png" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Indie Runner</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">An endless runner game.</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                       <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="images/Games/IR/Indie Runner 1.png" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="images/Games/IR/Indie Runner 2.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                    <img src="images/Games/IR/Indie Runner 3.png" class="rounded-md cursor-pointer gallery-thumbnail">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                   A simple endless runner game where you avoid obstacles to score more score. Used Blender for modelling and developing in unity.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                         <a href="https://lokidevtamil.itch.io/indie-runner" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                         <a href="https://github.com/LokiGameDev/Indie-Runner-Game" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                         <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="L_LUpnjgPso">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
@@ -368,17 +486,51 @@
                 <div class="reveal no-select">
                     <h3 class="text-2xl font-bold mb-4">Education</h3>
                     <div class="border border-gray-700 p-6 rounded-lg">
-                        <h4 class="text-xl font-semibold">Degree Name</h4>
-                        <p class="text-gray-400">University Name | 20XX - 20XX</p>
+                        <h4 class="text-xl font-semibold">B.E in Electronics and Communication Engineering</h4>
+                        <p class="text-gray-400 flex justify-between items-center">
+                            <span>Kongu Engineering College | 8.89 CGPA</span>
+                            <span>2022 - 2026</span>
+                        </p>
+                    </div>
+                    <div class="border border-gray-700 p-6 rounded-lg">
+                        <h4 class="text-xl font-semibold">B.E in Electronics and Communication Engineering</h4>
+                        <p class="text-gray-400 flex justify-between items-center">
+                            <span>Kongu National Matric Higher Secondary School | 92.3%</span>
+                            <span>2022</span>
+                        </p>
                     </div>
                 </div>
                 <div class="reveal" style="transition-delay: 0.2s;">
                     <h3 class="text-2xl font-bold mb-4 no-select">Certificates</h3>
-                    <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="https://placehold.co/1200x800/111/fff?text=Certificate+Image">
+                    <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Cert/Cert1.jpg">
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4 class="text-xl font-semibold">Certificate in Something</h4>
-                                <p class="text-gray-400">Issuing Organization</p>
+                                <h4 class="text-xl font-semibold">Blender Character Design for Video Games</h4>
+                                <p class="text-gray-400">Udemy</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Cert/Cert2.jpg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="text-xl font-semibold">Unity Game Development</h4>
+                                <p class="text-gray-400">Udemy</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Cert/Cert3.jpg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="text-xl font-semibold">Make A Multiplayer Game With Unity</h4>
+                                <p class="text-gray-400">Udemy</p>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -399,22 +551,22 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="w-full min-h-screen py-24 flex flex-col items-center justify-center">
+    <section id="contact" class="w-full py-24 flex flex-col items-center justify-center">
         <div class="container mx-auto">
             <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">Contact Me</h2>
              <div class="section-divider reveal"></div>
              <p class="text-center text-gray-400 max-w-2xl mx-auto mb-12 reveal no-select">
                  Have a project in mind or just want to say hello? Feel free to send me a message.
              </p>
-            <form class="max-w-xl mx-auto reveal">
+            <form action="https://formspree.io/f/xqayzznk" method="post" class="max-w-xl mx-auto reveal">
                 <div class="mb-4">
-                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 rounded-md form-input transition-all duration-300">
+                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 rounded-md form-input transition-all duration-300" required>
                 </div>
                  <div class="mb-4">
-                    <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input transition-all duration-300">
+                    <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input transition-all duration-300" required>
                 </div>
                  <div class="mb-6">
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" class="w-full p-3 rounded-md form-input transition-all duration-300"></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" class="w-full p-3 rounded-md form-input transition-all duration-300" required></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="action-button text-white font-semibold py-3 px-12 rounded-lg">Send Message</button>
@@ -423,8 +575,14 @@
         </div>
     </section>
     
+    <section class="w-full py-5 flex items-center justify-center">
+        <div class="container mx-auto text-center">
+            <p class="text-2xl md:text-3xl font-medium text-gray-300 italic tracking-wider reveal quote-animation">"Player don't just play the game, they live in it"</p>
+        </div>
+    </section>
+
     <footer class="text-center p-6 text-gray-500 text-sm no-select">
-        <p>&copy; 2024 Lokeshwaran K. All Rights Reserved.</p>
+        <p>&copy; 2024 Lokeshwaran K.</p>
     </footer>
 
     <!-- Video Modal -->
