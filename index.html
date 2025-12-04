@@ -376,8 +376,49 @@
             <h2 class="text-4xl md:text-5xl font-bold text-white text-center tracking-tighter reveal no-select">Projects</h2>
             <div class="section-divider reveal"></div>
 
-            <div class="w-full max-w-4xl mx-auto space-y-4">
+            <div class="w-full max-w-6xl mx-auto space-y-4">
                 <!-- Project Card 1 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="images/Games/" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Tower Defence ( Ongoing )</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A simulation game where you build and defend your tower from enemies during night</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="images/Games/" alt="Project Main Image" class="rounded-lg w-full mb-3">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="images/Games/" class="rounded-md cursor-pointer gallery-thumbnail">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                    Tower defence is a simulation game where you need to build and defend your tower from enemies during night. You can click to destroy or build different types of turrets and walls to defend your tower.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-7 w-7" title="Blender" style="filter: invert(0);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                        <a href="https://lokidevtamil.itch.io/rogue-blade" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                        <a href="https://github.com/LokiGameDev/TowerDefence" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                        <a href="#" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="dQw4w9WgXcQ">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
                 <div class="project-card reveal">
                     <div class="project-header">
                         <img src="images/Games/picRB.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
@@ -423,7 +464,7 @@
                     </div>
                 </div>
 
-                <!-- Project Card 2 -->
+                <!-- Project Card 3 -->
                 <div class="project-card reveal">
                     <div class="project-header">
                         <img src="images/Games/picLIT.jpg" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
@@ -465,7 +506,7 @@
                     </div>
                 </div>
 
-                <!-- Project Card 2 -->
+                <!-- Project Card 4 -->
                 <div class="project-card reveal">
                     <div class="project-header">
                         <img src="images/Games/picIR.png" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
@@ -575,104 +616,6 @@
                     </div>
                 </div>
 
-                <div class="reveal col-span-2" style="transition-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold mb-4 mt-8">Achievements</h3>
-                    <div id="cert-slider" class="relative">
-                        <div class="slider-container">
-                            <div class="slider-wrapper">
-                                <!-- Page 1 -->
-                                <div class="slider-page">
-                                    <div class="space-y-2">
-                                        <!-- Certificate 1 -->
-                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert1.jpg">
-                                            <div class="flex justify-between items-center">
-                                                <div>
-                                                    <h4 class="text-xl font-semibold">Neo Codathon (KEC) - Top 25</h4>
-                                                    <p class="text-gray-400">Secured a place in top 25 in coding competition for overall college,KEC.</p>
-                                                </div>
-                                                <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="images/Cert/Cert1.jpg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- Certificate 2 -->
-                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert2.jpg">
-                                            <div class="flex justify-between items-center">
-                                                <div>
-                                                    <h4 class="text-xl font-semibold">Gen AI Hackathon - Top 25</h4>
-                                                    <p class="text-gray-400">Event NameGot in top 25 in a National level hackathon by Intel and KPRIET.</p>
-                                                </div>
-                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- Certificate 3 -->
-                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert3.jpg">
-                                            <div class="flex justify-between items-center">
-                                                <div>
-                                                    <h4 class="text-xl font-semibold">Codathon (KEC) - 1st Place</h4>
-                                                    <p class="text-gray-400">Secured 1st place in intra department level coding competition,KEC.</p>
-                                                </div>
-                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Page 2 -->
-                                <div class="slider-page">
-                                    <div class="space-y-4">
-                                         <!-- Certificate 4 -->
-                                         <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert4.jpg">
-                                            <div class="flex justify-between items-center">
-                                                <div>
-                                                    <h4 class="text-xl font-semibold">Ideathon'24 - 2nd Place</h4>
-                                                    <p class="text-gray-400">Secured second place for our idea in Ideathon'24 ECE,KEC.</p>
-                                                </div>
-                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4"  data-cert-image="images/Cert/Cert1.jpg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- Certificate 5 -->
-                                        <div class="certificate-item border border-gray-700 p-6 rounded-lg hover:bg-gray-900/50 cursor-pointer transition-colors" data-cert-image="images/Achievements/Cert5.jpg">
-                                            <div class="flex justify-between items-center">
-                                                <div>
-                                                    <h4 class="text-xl font-semibold">Line Follower - 3rd Place</h4>
-                                                    <p class="text-gray-400">Issuing Organization 5Line Follower - 3rd Place</p>
-                                                </div>
-                                                 <button class="view-cert-button text-gray-400 hover:text-white transition-colors flex-shrink-0 ml-4" data-cert-src="https://placehold.co/800x600/000000/FFFFFF?text=Certificate+5">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                </div>
-
-                <div class="reveal col-span-2 no-select space-y-2" style="transition-delay: 0.4s;">
-                     <h3 class="text-2xl font-bold mb-4 mt-8">Memberships</h3>
-                     <div class="border border-gray-700 p-6 rounded-lg">
-                        <h4 class="text-xl font-semibold">Secreatary</h4>
-                        <p class="text-gray-400 flex justify-between items-center">
-                            <span>ECE Association, Kongu Engineering College</span>
-                            <span>2025 - Present</span>
-                        </p>
-                    </div>
-                    <div class="border border-gray-700 p-6 rounded-lg">
-                        <h4 class="text-xl font-semibold">Executive Membeer</h4>
-                        <p class="text-gray-400 flex justify-between items-center">
-                            <span>Rotaract Club, Kongu Engineering College</span>
-                            <span>2023 - Present</span>
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
