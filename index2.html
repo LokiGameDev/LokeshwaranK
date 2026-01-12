@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acumen'26 | Fire & Ash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --fire: #ff4d00;
+            --lava: #910D0D;
+            --ash: #1a1a1a;
+            --ember: #ffbe0b;
+        }
+        
+        body {
+            background-color: #080808;
+            color: #f0f0f0;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-avatar { font-family: 'Cinzel', serif; }
+
+        /* Animated Fire Background */
+        .bg-fire-depth {
+            background: radial-gradient(circle at bottom, #2b0b00 0%, #080808 80%);
+        }
+
+        /* Ember Particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Glowing Text Animation */
+        @keyframes flicker {
+            0%, 100% { text-shadow: 0 0 10px var(--fire), 0 0 20px var(--fire); }
+            50% { text-shadow: 0 0 5px var(--lava), 0 0 10px var(--lava); }
+        }
+        .fire-text { animation: flicker 2s infinite alternate; color: var(--fire); }
+
+        /* Card Stylings */
+        .glass-card {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before { left: 100%; }
+
+        .glass-card:hover {
+            border-color: var(--fire);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 77, 0, 0.2);
+        }
+
+        .btn-ember {
+            background: linear-gradient(45deg, #ff4d00, #ffb700);
+            box-shadow: 0 4px 15px rgba(255, 77, 0, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-ember:hover {
+            box-shadow: 0 6px 25px rgba(255, 77, 0, 0.6);
+            filter: brightness(1.2);
+        }
+
+        /* Ash Smoke Effect */
+        #ash-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-fire-depth">
+
+    <canvas id="ash-canvas"></canvas>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-md border-b border-orange-900/30">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-orange-500 font-avatar text-xl font-bold tracking-tighter">ECEA & ISF</span>
+            </div>
+            <div class="hidden md:block text-xs text-gray-400 uppercase tracking-widest">
+                Kongu Engineering College • Dept of ECE
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-4 text-center">
+        <div data-aos="zoom-out" data-aos-duration="1500" class="relative">
+            <img src="Acumen262.png" alt="Acumen'26" class="w-full max-w-[320px] md:max-w-[650px] drop-shadow-[0_0_50px_rgba(255,77,0,0.4)]">
+        </div>
+
+        <div class="mt-8 space-y-4" data-aos="fade-up" data-aos-delay="500">
+            <!-- <h1 class="text-3xl md:text-6xl font-avatar fire-text font-black">ACUMEN'26</h1> -->
+            <p class="text-orange-400 font-avatar tracking-[0.5em] text-sm md:text-lg">FEBRUARY 7 • 2026</p>
+            
+            <div class="flex flex-col items-center gap-2 pt-6">
+                <p class="text-gray-300 font-light max-w-xl mx-auto text-sm md:text-base px-6">
+                    A National Level Technical Symposium organized by 
+                    <span class="text-white font-bold italic">Electronics and Communication Engineering Association (ECEA)</span> 
+                    and <span class="text-white font-bold italic">ISF</span>.
+                </p>
+                <p class="text-orange-600 font-bold tracking-wider">KONGU ENGINEERING COLLEGE</p>
+            </div>
+
+            <div class="mt-8 bg-orange-900/20 border border-orange-500/30 px-8 py-4 rounded-full inline-block backdrop-blur-sm">
+                <span class="text-xl md:text-2xl font-bold">Entry: ₹250 <span class="text-sm font-normal text-gray-400 italic">per head</span></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="relative z-10 py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-avatar text-white mb-4" data-aos="fade-up">The Fire Arenas</h2>
+            <div class="h-1 w-24 bg-orange-600 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
+                <div class="mb-4 text-orange-500">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Project Presentation</h3>
+                <p class="text-sm text-gray-400 mb-6 italic">Coordinators: Coordinator 1 & Coordinator 2</p>
+                <a href="LINK_HERE" class="btn-ember w-full py-3 rounded-xl block text-center font-bold text-black">REGISTER</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="mb-4 text-orange-500">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Codathon</h3>
+                <p class="text-sm text-gray-400 mb-6 italic">Coordinators: Coordinator 1 & Coordinator 2</p>
+                <a href="LINK_HERE" class="btn-ember w-full py-3 rounded-xl block text-center font-bold text-black">REGISTER</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="mb-4 text-orange-500">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Circuitrix</h3>
+                <p class="text-sm text-gray-400 mb-6 italic">Coordinators: Coordinator 1 & Coordinator 2</p>
+                <a href="LINK_HERE" class="btn-ember w-full py-3 rounded-xl block text-center font-bold text-black">REGISTER</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
+                <div class="mb-4 text-orange-500">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Ideathon</h3>
+                <p class="text-sm text-gray-400 mb-6 italic">Coordinators: Coordinator 1 & Coordinator 2</p>
+                <a href="LINK_HERE" class="btn-ember w-full py-3 rounded-xl block text-center font-bold text-black">REGISTER</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="mb-4 text-orange-500">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Hackathon</h3>
+                <p class="text-sm text-gray-400 mb-6 italic">Coordinators: Coordinator 1 & Coordinator 2</p>
+                <a href="LINK_HERE" class="btn-ember w-full py-3 rounded-xl block text-center font-bold text-black">REGISTER</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-24 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-avatar text-center text-orange-500 mb-16" data-aos="fade-up">Ash Guilds (Workshops)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-orange-600" data-aos="zoom-in">
+                    <h4 class="text-xl font-bold mb-2">Workshop I</h4>
+                    <p class="text-sm text-gray-500 mb-4">Lead: Coord 1 & Coord 2</p>
+                    <a href="LINK" class="text-orange-500 font-bold flex items-center gap-2">Register <span class="text-xl">→</span></a>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-orange-600" data-aos="zoom-in" data-aos-delay="100">
+                    <h4 class="text-xl font-bold mb-2">Workshop II</h4>
+                    <p class="text-sm text-gray-500 mb-4">Lead: Coord 3 & Coord 4</p>
+                    <a href="LINK" class="text-orange-500 font-bold flex items-center gap-2">Register <span class="text-xl">→</span></a>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border-l-4 border-orange-600" data-aos="zoom-in" data-aos-delay="200">
+                    <h4 class="text-xl font-bold mb-2">Workshop III</h4>
+                    <p class="text-sm text-gray-500 mb-4">Lead: Coord 5 & Coord 6</p>
+                    <a href="LINK" class="text-orange-500 font-bold flex items-center gap-2">Register <span class="text-xl">→</span></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 border-t border-orange-900/50">
+        <div class="max-w-5xl mx-auto text-center">
+            <h3 class="text-2xl font-avatar text-orange-500 mb-12" data-aos="fade-up">Symposium Overlords</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16" data-aos="fade-up">
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                    <p class="text-xl font-bold">Overall Coordinator 1</p>
+                    <p class="text-orange-400 font-mono">+91 90000 00000</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                    <p class="text-xl font-bold">Overall Coordinator 2</p>
+                    <p class="text-orange-400 font-mono">+91 90000 00001</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 opacity-50">
+                <p class="tracking-[0.5em] text-xs uppercase">Acumen'26 | Dept of ECE</p>
+                <p class="text-[10px] italic">Kongu Engineering College, Perundurai, Erode</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Fire Ember Particles Animation
+        const canvas = document.getElementById('ash-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.opacity = Math.random() * 0.8 + 0.2;
+                this.color = Math.random() > 0.5 ? '#ff4d00' : '#4a4a4a';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10) {
+                    this.y = canvas.height + 10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function handleParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            handleParticles();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        animate();
+    </script>
+</body>
+</html>
