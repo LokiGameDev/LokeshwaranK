@@ -382,10 +382,52 @@
             <div class="section-divider reveal"></div>
 
             <div class="w-full max-w-6xl mx-auto space-y-4">
+
+                
                 <!-- Project Card 1 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="images/Games/picTD.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Bullet Gun (Ongoing)</h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A third person action game.</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="images/Games/RB/" alt="Project Main Image" class="rounded-lg w-full mb-3  certificate-item" data-cert-image="images/Games/RB/RB1.png">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="images/Games/RB/" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/RB/RB2.png">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                    Bullet gun is a third person action game with the revenge story of an assasin with a special kind of weapon.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                        <a href="https://lokidevtamil.itch.io/" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                        <a href="https://github.com/LokiGameDev/Bullet-Gun" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                        <a href="" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="0GCCgmywXb0">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="images/Games/picTD.jpg" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
                             <h3 class="text-xl md:text-2xl font-bold text-white">Tower Defence</h3>
                             <p class="text-gray-400 text-sm md:text-base mt-1">A simulation game where you build and defend your tower from enemies during waves</p>
@@ -398,7 +440,7 @@
                                 <!-- Image Gallery -->
                                 <img src="images/Games/TD/TD2.jpg" alt="Project Main Image" class="rounded-lg w-full mb-3  certificate-item" data-cert-image="images/Games/TD/TD2.jpg">
                                 <div class="grid grid-cols-3 gap-3">
-                                    <img src="images/Games/TD/TD1.jpg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/TD/TD1.jpg">
+                                    <!-- <img src="images/Games/TD/TD1.jpg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/TD/TD1.jpg"> -->
                                     <img src="images/Games/TD/TD3.jpg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/TD/TD3.jpg">
                                     <img src="images/Games/TD/TD4.jpg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/TD/TD4.jpg">
                                     <img src="images/Games/TD/TD5.jpg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/TD/TD5.jpg">
@@ -409,8 +451,20 @@
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                    Tower defence is a simulation game where you need to build and defend your tower from enemies during waves. You can click to destroy or build different types of turrets to defend your tower.
+                                    Tower defence is a simulation game where you need to build and defend your tower from enemies during waves. You can click to destroy 
+                                    or build different types of turrets to defend your tower. Used Unity' Grid for building system. Built shopping and turret upgrade system for harder gamepley. 
+                                    Made different kinds of enemies to spawn after certain level to make the game challenging.
                                 </p>
+
+                                <h3 class="text-xl font-bold text-white mt-6 mb-3">Concepts</h3>
+                                    <ul class="text-gray-400 text-l list-disc list-inside space-y-1">
+                                        <li>Grid-based Building System</li>
+                                        <li>Object Pooling</li>
+                                        <li>Wave-based Enemy Spawning</li>
+                                        <li>Upgrade System</li>
+                                        <li>Level-based Difficulty Scaling</li>
+                                    </ul>
+
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
                                         <h4 class="text-sm font-semibold mr-2">Tech:</h4>
@@ -428,11 +482,11 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Project Card 2 -->
+                
+                <!-- Project Card 3 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="images/Games/picRB.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/picRB.jpg" alt="Project 3 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
                             <h3 class="text-xl md:text-2xl font-bold text-white">Rogue Blade</h3>
                             <p class="text-gray-400 text-sm md:text-base mt-1">A top down wave type action game.</p>
@@ -455,8 +509,17 @@
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                    Rogue Blade is a top down wave type game where you need to protect your home from enemies. Each wave will have more number of enemies and player can buy blades and turrets to protect the home.
+                                    Rogue Blade is a top down wave type game where you need to protect your home from enemies. Each wave will have more number of enemies 
+                                    and player can buy blades and turrets to protect the home.
                                 </p>
+
+                                <h3 class="text-xl font-bold text-white mt-6 mb-3">Concepts</h3>
+                                    <ul class="text-gray-400 text-l list-disc list-inside space-y-1">
+                                        <li>Object Pooling for enemies</li>
+                                        <li>Wave-based Enemy Spawning</li>
+                                        <li>Singleton pattern for managers</li>
+                                    </ul>
+
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
                                         <h4 class="text-sm font-semibold mr-2">Tech:</h4>
@@ -475,10 +538,10 @@
                     </div>
                 </div>
 
-                <!-- Project Card 3 -->
+                <!-- Project Card 4 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="images/Games/picLIT.jpg" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/picLIT.jpg" alt="Project 4 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
                             <h3 class="text-xl md:text-2xl font-bold text-white">Locked In</h3>
                             <p class="text-gray-400 text-sm md:text-base mt-1">A simple horror type maze game.</p>
@@ -498,7 +561,9 @@
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                   A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you found will unlock a new type of enemy into the maze.A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you found will unlock a new type of enemy into the maze.
+                                   A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you found will unlock a new
+                                    type of enemy into the maze.A simple horror type maze runner game where you need to find three keys to exit the maze. But each key you 
+                                    found will unlock a new type of enemy into the maze.
                                 </p>
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
@@ -517,30 +582,41 @@
                     </div>
                 </div>
 
-                <!-- Project Card 4 -->
+                <!-- Project Card 5 -->
                 <div class="project-card reveal">
                     <div class="project-header">
-                        <img src="images/Games/picIR.png" alt="Project 2 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <img src="images/Games/picMTB.png" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
                         <div class="flex-1">
-                            <h3 class="text-xl md:text-2xl font-bold text-white">Indie Runner</h3>
-                            <p class="text-gray-400 text-sm md:text-base mt-1">An endless runner game.</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Tank Battle <h4>(Course Project)</h4></h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">A top down 2D tank battle Multiplayer game.</p>
                         </div>
                         <div class="plus-icon ml-4">+</div>
                     </div>
                     <div class="project-content">
-                       <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
                             <div class="md:col-span-3">
                                 <!-- Image Gallery -->
-                                <img src="images/Games/IR/Indie Runner 1.png" alt="Project Main Image" class="rounded-lg w-full mb-3 certificate-item" data-cert-image="images/Games/IR/Indie Runner 1.png">
+                                <img src="images/Games/MTB/Gameplay1.jpeg" alt="Project Main Image" class="rounded-lg w-full mb-3  certificate-item" data-cert-image="images/Games/MTB/Gameplay1.jpeg">
                                 <div class="grid grid-cols-3 gap-3">
-                                    <img src="images/Games/IR/Indie Runner 2.png" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/IR/Indie Runner 2.png">
-                                    <img src="images/Games/IR/Indie Runner 3.png" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/IR/Indie Runner 3.png">
+                                    <img src="images/Games/MTB/Gameplay2.jpeg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MTB/Gameplay2.jpeg">
+                                    <img src="images/Games/MTB/Gameplay3.jpeg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MTB/Gameplay3.jpeg">
+                                    <!-- <img src="images/Games/MTB/Gameplay4.jpeg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MTB/Gameplay4.jpeg"> -->
+                                    <img src="images/Games/MTB/Gameplay5.jpeg" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MTB/Gameplay5.jpeg">
                                 </div>
                             </div>
                             <div class="md:col-span-2 flex flex-col">
                                 <p class="text-gray-300 leading-relaxed">
-                                   A simple endless runner game where you avoid obstacles to score more score. Used Blender for modelling and developing in unity.
+                                    Tank battle is a 2D multiplayer game built with the help of a Udemy course by Nathan Farrer at GameDev.hq. I learnt about Unity's Netcode
+                                     for gameobjects during this course and also about the Unity services like Relay and Lobby which are helful while building an multiplayer game.
                                 </p>
+
+                                <h3 class="text-xl font-bold text-white mt-6 mb-3">Concepts</h3>
+                                    <ul class="text-gray-400 text-l list-disc list-inside space-y-1">
+                                        <li>Unity's netcode for multiplayer</li>
+                                        <li>Relay service for playing online</li>
+                                        <li>Lobby system using unity's Lobby service</li>
+                                    </ul>
+
                                 <div class="mt-auto pt-4">
                                     <div class="flex items-center space-x-4 mb-6">
                                         <h4 class="text-sm font-semibold mr-2">Tech:</h4>
@@ -548,9 +624,8 @@
                                         <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
                                     </div>
                                     <div class="flex flex-col space-y-3">
-                                         <a href="https://lokidevtamil.itch.io/indie-runner" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
-                                         <a href="https://github.com/LokiGameDev/Indie-Runner-Game" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
-                                         <a href="https://youtu.be/dQHelwlnAAQ" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="dQHelwlnAAQ">Trailer</a>
+                                        <a href="https://github.com/LokiGameDev/Multiplayer-Tank-Battle" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">Github</a>
+                                        <!-- <a href="" class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg" data-video-id="0GCCgmywXb0">Trailer</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -558,6 +633,47 @@
                     </div>
                 </div>
 
+                <!-- Project Card 6 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <img src="images/Games/picMO.png" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-white">Mask/Off <h4>(Global Game Jam 2026)</h4></h3>
+                            <p class="text-gray-400 text-sm md:text-base mt-1">An couch co-op 3D puzzle platformer</p>
+                        </div>
+                        <div class="plus-icon ml-4">+</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <div class="md:col-span-3">
+                                <!-- Image Gallery -->
+                                <img src="images/Games/picMO.png" alt="Project Main Image" class="rounded-lg w-full mb-3  certificate-item" data-cert-image="images/Games/picMO.png">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <img src="images/Games/MO/MO1.png" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MO/MO1.png">
+                                    <img src="images/Games/MO/MO2.png" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MO/MO2.png">
+                                    <img src="images/Games/MO/MO3.png" class="rounded-md cursor-pointer gallery-thumbnail certificate-item" data-cert-image="images/Games/MO/MO3.png">
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex flex-col">
+                                <p class="text-gray-300 leading-relaxed">
+                                    Mask off is a 3D co-op platformer where different mask have different abilities and the players need to use them to clear levels. 
+                                    I helped with the level designing for this game using Blender.
+                                </p>
+                                <div class="mt-auto pt-4">
+                                    <div class="flex items-center space-x-4 mb-6">
+                                        <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-7 w-7" title="Unity" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-7 w-7" title="C#" style="filter: invert(0);">
+                                        <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-7 w-7" title="Blender" style="filter: invert(0);">
+                                    </div>
+                                    <div class="flex flex-col space-y-3">
+                                        <a href="https://quantumcookie.itch.io/maskoff" class="action-button text-center w-full text-white py-2 px-4 rounded-lg">itch.io</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

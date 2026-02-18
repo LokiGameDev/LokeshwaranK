@@ -3,171 +3,634 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Response Counts</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Lokeshwaran K</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+        /* --- CORE THEME --- */
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+            font-family: 'Tinos', serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
+        body::-webkit-scrollbar { display: none; }
 
-        .dashboard-container {
-            text-align: center;
-            padding: 30px 40px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        #particles-js {
+            position: fixed;
             width: 100%;
-            max-width: 500px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: #000000;
         }
 
-        h1 {
-            color: #2c3e50;
-            margin-top: 0;
-            margin-bottom: 25px;
+        /* --- VIEW TRANSITIONS --- */
+        .view-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
-        
-        #counts-container {
-            text-align: left;
+        .view-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .count-item {
+
+        /* --- TOP NAV MENU --- */
+        .top-nav-btn {
+            font-size: 1rem;
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .top-nav-btn:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+        }
+        .top-nav-btn.active {
+            color: #000;
+            background-color: #fff;
+        }
+
+        /* Quote Animation */
+        @keyframes spread-in {
+            from { letter-spacing: -0.5em; opacity: 0; }
+            to { letter-spacing: 0.1em; opacity: 1; }
+        }
+        .quote-animation.visible {
+            animation: spread-in 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+        }
+
+        /* Name Animation */
+        .name-animation-container {
+            display: flex;
+            font-size: 2.5rem;
+            font-weight: 700;
+            cursor: default;
+            justify-content: center;
+        }
+        @media(min-width: 1024px) { .name-animation-container { justify-content: flex-start; } }
+
+        .name-animation-container .hover { position: relative; display: grid; place-items: center; }
+        .name-animation-container h1 {
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffff;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0 2px;
+        }
+        .name-animation-container .hover:hover h1 {
+            transform: scale(1.3) translateY(-5px);
+            color: #ffffff;
+            -webkit-text-stroke: 1px transparent;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- COMPONENTS --- */
+        .tech-icon { transition: transform 0.3s ease, filter 0.3s ease; }
+        .tech-icon:hover { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); }
+
+        .action-button {
+            transition: all 0.3s ease;
+            border: 1px solid #444;
+            background: #000;
+        }
+        .action-button:hover { background-color: #ffffff; color: #000000; border-color: #fff; }
+        .action-button:active { transform: scale(0.95); }
+
+        .form-input {
+            background-color: #111;
+            border: 1px solid #333;
+            color: #fff;
+        }
+        .form-input:focus { outline: none; border-color: #fff; }
+
+        /* --- PROJECT ACCORDION --- */
+        .project-card {
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #050505;
+            transition: background-color 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        .project-card:hover { background-color: #0a0a0a; border-color: #555; }
+        .project-header {
+            padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 10px;
-            font-size: 1.2em;
-            border-bottom: 1px solid #ecf0f1;
+            cursor: pointer;
+        }
+        .plus-icon {
+            font-size: 1.5rem;
+            color: #666;
+            transition: transform 0.4s ease, color 0.3s ease;
+        }
+        .project-card.active .plus-icon { transform: rotate(45deg); color: #fff; }
+        
+        .project-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .project-card.active .project-content {
+            max-height: 1000px;
+            padding: 0 1rem 1rem 1rem;
         }
 
-        .count-item:last-child {
-            border-bottom: none;
+        /* --- CERTIFICATES --- */
+        .view-cert-button { transition: color 0.2s; }
+        .view-cert-button:hover { color: #fff; }
+
+        /* --- MODAL --- */
+        .modal { transition: opacity 0.3s ease; }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content { transition: transform 0.3s ease; transform: scale(0.95); }
+        .modal.active .modal-content { transform: scale(1); }
+
+        /* --- LAYOUT UTILS --- */
+        .section-header {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            display: block;
         }
 
-        .item-name {
-            color: #34495e;
+        .name-space {
+            width: 20px;   /* adjust spacing */
         }
 
-        .item-count {
-            font-weight: 700;
-            font-size: 1.3em;
-            color: #2980b9;
-            background-color: #ecf0f1;
-            padding: 5px 12px;
-            border-radius: 20px;
-            min-width: 30px;
-            text-align: center;
+        .no-select {
+            user-select: none;
+            -webkit-user-select: none; /* Chrome, Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+            pointer-events: none;
         }
 
-        .footer {
-            margin-top: 25px;
-            font-size: 0.9em;
-            color: #95a5a6;
+        .no-select-head {
+            user-select: none;
+            -webkit-user-select: none; /* Chrome, Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE/Edge */
+        }
+        
+        @media (min-width: 1024px) {
+            .sticky-sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .sticky-sidebar::-webkit-scrollbar { display: none; }
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <div class="dashboard-container">
-        <h1>Techthirst Registrations</h1>
-        <div id="counts-container">
-            <p>Loading counts...</p>
-        </div>
-        <div class="footer">
-            Last updated: <span id="last-updated">Never</span>
+    <div id="particles-js"></div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="flex flex-col lg:flex-row w-full min-h-screen">
+
+        <!-- LEFT PANEL: PROFILE (Sticky) -->
+        <aside class="w-full lg:w-[35%] xl:w-[40%] bg-black/80 lg:border-r border-gray-800 p-8 lg:p-12 sticky-sidebar flex flex-col justify-center z-10 h-screen">
+            
+            <!-- Photo & Name -->
+            <div class="text-center lg:text-left mb-8">
+                <div class="flex justify-center lg:justify-start mb-6">
+                    <img src="images/picMe.jpg" alt="Profile" class="w-40 h-52 object-cover border border-gray-700 rounded-xl shadow-2xl shadow-gray-900/50">
+                </div>
+                
+                <div class="name-animation-container mb-2 no-select-head">
+                    <div class="hover"><h1>L</h1></div>
+                    <div class="hover"><h1>o</h1></div>
+                    <div class="hover"><h1>k</h1></div>
+                    <div class="hover"><h1>e</h1></div>
+                    <div class="hover"><h1>s</h1></div>
+                    <div class="hover"><h1>h</h1></div>
+                    <div class="hover"><h1>w</h1></div>
+                    <div class="hover"><h1>a</h1></div>
+                    <div class="hover"><h1>r</h1></div>
+                    <div class="hover"><h1>a</h1></div>
+                    <div class="hover"><h1>n</h1></div>
+                    <div class="name-space"></div>
+                    <div class="hover"><h1>K</h1></div>
+                </div>
+                <h2 class="text-lg text-gray-400 mt-2 font-medium" id="typing-effect"></h2>
+            </div>
+
+            <!-- Bio -->
+            <p class="text-gray-400 leading-relaxed mb-8 text-center lg:text-left text-sm md:text-base">
+                I do game development in Unity, crafting interactive experiences. Constantly learning and seeking opportunities to collaborate.
+            </p>
+
+            <!-- Tech Stack -->
+             <div class="flex flex-col gap-4">
+                <h3 class="text-lg font-semibold text-white tracking-wide no-select">Tech Stack</h3>
+                <div class="mb-8 flex justify-center lg:justify-start gap-4">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity" class="h-10 w-10 tech-icon" title="Unity" style="filter: invert(0);">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" alt="C#" class="h-10 w-10 tech-icon" title="C#" style="filter: invert(0);">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" alt="Blender" class="h-10 w-10 tech-icon" title="Blender" style="filter: invert(0);">
+                    <img src="https://img.icons8.com/?size=100&id=A6WwODb5ChNB&format=png&color=ffffff" alt="Krita" class="h-10 w-10 tech-icon" title="Krita" style="filter: invert(0);">
+                </div>
+            </div>
+
+            <!-- Socials & Resume -->
+            <div class="flex flex-col gap-4">
+                <h3 class="text-lg font-semibold text-white tracking-wide no-select">Social Links</h3>
+                <div class="flex justify-center lg:justify-start gap-3">
+                     <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/lokeshwarank/" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="LinkedIn">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" class="h-6 w-6" style="filter: invert(0);">
+                        </a>
+                        <!-- GitHub -->
+                        <a href="https://github.com/LokiGameDev" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="GitHub">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub" class="h-6 w-6" style="filter: invert(0);">
+                        </a>
+                        <!-- itch.io -->
+                        <a href="https://lokidevtamil.itch.io/" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-600 rounded-lg hover:border-white hover:bg-white/10 transition-all transform hover:scale-110" title="itch.io">
+                            <svg class="h-6 w-6 text-white" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.833 0A4.84 4.84 0 0 0 0 4.833v14.334A4.84 4.84 0 0 0 4.833 24h14.334A4.84 4.84 0 0 0 24 19.167V4.833A4.84 4.84 0 0 0 19.167 0zm.26 5.48h3.328c.28 0 .506.227.506.507v.228a.507.507 0 0 1-.506.506H5.093a.507.507 0 0 1-.506-.506v-.228c0-.28.226-.507.506-.507zm8.414 0h3.328c.28 0 .506.227.506.507v.228a.507.507 0 0 1-.506.506h-3.328a.507.507 0 0 1-.506-.506v-.228c0-.28.226-.507.506-.507zm-4.447 2.454c2.515 0 4.555 2.04 4.555 4.555s-2.04 4.555-4.555 4.555-4.555-2.04-4.555-4.555 2.04-4.555 4.555-4.555z"/></svg>
+                        </a>
+                </div>
+                <a href="images/LokeshwaranK_GameDev_Resume.pdf" download class="action-button text-white text-sm font-semibold py-3 px-6 rounded text-center block w-full lg:w-auto">Download Resume</a>
+            </div>
+        </aside>
+
+        <!-- RIGHT PANEL: DYNAMIC CONTENT -->
+        <main class="w-full lg:w-[65%] xl:w-[60%] relative bg-black">
+            
+            <!-- TOP RIGHT NAVIGATION (Sticky & Anchored) -->
+            <div class="sticky top-0 z-50 flex justify-end p-6 lg:p-8 pointer-events-none">
+                <nav class="bg-black/80 backdrop-blur-md p-1 rounded-full border border-gray-800 flex gap-1 pointer-events-auto shadow-lg">
+                    <button class="top-nav-btn active" onclick="switchView('home', this)">Home</button>
+                    <button class="top-nav-btn" onclick="switchView('projects', this)">Projects</button>
+                    <button class="top-nav-btn" onclick="switchView('more', this)">More</button>
+                    <button class="top-nav-btn" onclick="switchView('contact', this)">Contact</button>
+                </nav>
+            </div>
+
+            <!-- CONTENT CONTAINER -->
+            <div class="px-6 lg:px-16 pb-32">
+
+                <!-- VIEW: HOME (Featured Projects) -->
+                <div id="view-home" class="view-section active">
+                    <!-- Featured Projects -->
+                    <div class="mb-4">
+                        <h3 class="section-header">Featured Projects</h3>
+                        <!-- Featured Project 1 -->
+                        <div class="project-card reveal">
+                            <div class="project-header">
+                                <img src="images/Games/picTD.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                                <div class="flex-1">
+                                    <h3 class="text-xl md:text-2xl font-bold text-white">Tower Defence</h3>
+                                    <p class="text-gray-400 text-sm md:text-base mt-1">A simulation game where you build and defend your tower from enemies during waves</p>
+                                </div>
+                                <div class="plus-icon ml-4">+</div>
+                            </div>
+                            <div class="project-content">
+                                <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+
+                                    <!-- LEFT CONTENT -->
+                                    <div class="md:col-span-3 flex flex-col">
+                                        <p class="text-gray-300 leading-relaxed">
+                                            Tower defence is a simulation game where you need to build and defend your tower from enemies during waves.
+                                            You can click to destroy or build different types of turrets to defend your tower.
+                                        </p>
+
+                                        <div class="pt-6">
+                                            <div class="flex items-center space-x-4">
+                                                <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" class="h-7 w-7">
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" class="h-7 w-7">
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" class="h-7 w-7">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT LINKS -->
+                                    <div class="md:col-span-2 flex flex-col justify-center space-y-3">
+                                        <a href="https://lokidevtamil.itch.io/tower-defence"
+                                        class="action-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            itch.io
+                                        </a>
+
+                                        <a href="https://github.com/LokiGameDev/TowerDefence"
+                                        class="action-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            Github
+                                        </a>
+
+                                        <a href="https://youtu.be/8x9qAZr9wro"
+                                        class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            Trailer
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Project 2 -->
+                        <div class="project-card reveal">
+                            <div class="project-header">
+                                <img src="images/Games/picTD.jpg" alt="Project 1 Thumbnail" class="w-20 h-12 object-cover rounded-md mr-4 hidden sm:block flex-shrink-0">
+                                <div class="flex-1">
+                                    <h3 class="text-xl md:text-2xl font-bold text-white">Tower Defence</h3>
+                                    <p class="text-gray-400 text-sm md:text-base mt-1">A simulation game where you build and defend your tower from enemies during waves</p>
+                                </div>
+                                <div class="plus-icon ml-4">+</div>
+                            </div>
+                            <div class="project-content">
+                                <div class="pt-4 pb-4 border-t border-gray-700 grid grid-cols-1 md:grid-cols-5 gap-6">
+
+                                    <!-- LEFT CONTENT -->
+                                    <div class="md:col-span-3 flex flex-col">
+                                        <p class="text-gray-300 leading-relaxed">
+                                            Tower defence is a simulation game where you need to build and defend your tower from enemies during waves.
+                                            You can click to destroy or build different types of turrets to defend your tower.
+                                        </p>
+
+                                        <div class="pt-6">
+                                            <div class="flex items-center space-x-4">
+                                                <h4 class="text-sm font-semibold mr-2">Tech:</h4>
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" class="h-7 w-7">
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png" class="h-7 w-7">
+                                                <img src="https://img.icons8.com/ios-filled/50/ffffff/blender-3d.png" class="h-7 w-7">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT LINKS -->
+                                    <div class="md:col-span-2 flex flex-col justify-center space-y-3">
+                                        <a href="https://lokidevtamil.itch.io/tower-defence"
+                                        class="action-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            itch.io
+                                        </a>
+
+                                        <a href="https://github.com/LokiGameDev/TowerDefence"
+                                        class="action-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            Github
+                                        </a>
+
+                                        <a href="https://youtu.be/8x9qAZr9wro"
+                                        class="action-button trailer-button text-center w-full text-white py-2 px-4 rounded-lg">
+                                            Trailer
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: PROJECTS (All Projects) -->
+                <div id="view-projects" class="view-section">
+                    <h3 class="section-header">All Projects</h3>
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="flex items-center gap-4">
+                                <img src="https://placehold.co/100x60/111/fff?text=P1" class="w-16 h-10 object-cover rounded hidden sm:block">
+                                <div>
+                                    <h4 class="font-bold text-lg">Project Title 1</h4>
+                                    <p class="text-xs text-gray-500">Short description.</p>
+                                </div>
+                            </div>
+                            <div class="plus-icon">+</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="border-t border-gray-800 pt-4 flex flex-col gap-4">
+                                <p class="text-sm text-gray-300">Full description.</p>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <img src="https://placehold.co/200x150/111/fff?text=A" class="rounded w-full h-auto project-sub-image cursor-pointer hover:opacity-80">
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-3 mt-auto">
+                                    <div class="flex-grow"></div>
+                                    <a href="#" class="text-xs border border-gray-600 px-3 py-1 rounded hover:bg-white hover:text-black transition">itch.io</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="flex items-center gap-4">
+                                <img src="https://placehold.co/100x60/111/fff?text=P2" class="w-16 h-10 object-cover rounded hidden sm:block">
+                                <div>
+                                    <h4 class="font-bold text-lg">Project Title 2</h4>
+                                    <p class="text-xs text-gray-500">Short description.</p>
+                                </div>
+                            </div>
+                            <div class="plus-icon">+</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="border-t border-gray-800 pt-4 flex flex-col gap-4">
+                                <p class="text-sm text-gray-300">Full description.</p>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <img src="https://placehold.co/200x150/111/fff?text=B" class="rounded w-full h-auto project-sub-image cursor-pointer hover:opacity-80">
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-3 mt-auto">
+                                    <div class="flex-grow"></div>
+                                    <a href="#" class="text-xs border border-gray-600 px-3 py-1 rounded hover:bg-white hover:text-black transition">itch.io</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more projects here as needed -->
+                </div>
+
+                <!-- VIEW: MORE (Education & Certs) -->
+                <div id="view-more" class="view-section">
+                    <h3 class="section-header">Education & Achievements</h3>
+                    
+                    <div class="mb-10">
+                        <div class="border border-gray-800 p-6 rounded bg-gray-900/20">
+                            <h4 class="text-xl font-bold text-white mb-2">B.E in Electronics & Communication</h4>
+                            <div class="flex justify-between text-gray-400">
+                                <span>Kongu Engineering College (8.89 CGPA)</span>
+                                <span>2022 - 2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-lg font-bold mb-4 border-b border-gray-800 pb-2 inline-block">Certificates & Participation</h4>
+                    <!-- Certificates List -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Item 1 -->
+                        <div class="border border-gray-800 p-4 rounded flex justify-between items-center hover:bg-gray-900/30 transition">
+                            <div>
+                                <h4 class="font-semibold">Certificate Title 1</h4>
+                                <p class="text-sm text-gray-500">Udemy</p>
+                            </div>
+                            <button class="view-cert-button text-gray-500 hover:text-white" data-cert-src="https://placehold.co/800x600/111/fff?text=Cert+1">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="border border-gray-800 p-4 rounded flex justify-between items-center hover:bg-gray-900/30 transition">
+                            <div>
+                                <h4 class="font-semibold">Game Jam Participation</h4>
+                                <p class="text-sm text-gray-500">Global Game Jam</p>
+                            </div>
+                            <button class="view-cert-button text-gray-500 hover:text-white" data-cert-src="https://placehold.co/800x600/111/fff?text=Cert+2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="border border-gray-800 p-4 rounded flex justify-between items-center hover:bg-gray-900/30 transition">
+                            <div>
+                                <h4 class="font-semibold">Unity C# Essentials</h4>
+                                <p class="text-sm text-gray-500">Course Name</p>
+                            </div>
+                            <button class="view-cert-button text-gray-500 hover:text-white" data-cert-src="https://placehold.co/800x600/111/fff?text=Cert+3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: CONTACT -->
+                <div id="view-contact" class="view-section">
+                    <h3 class="section-header">Contact Me</h3>
+                    <p class="text-gray-400 mb-8">
+                        Have a project in mind or just want to say hello? Feel free to send me a message.
+                    </p>
+                    <form action="https://formspree.io/f/your_unique_id" method="POST" class="flex flex-col gap-4 max-w-lg">
+                        <input type="text" name="name" placeholder="Name" class="form-input p-4 rounded w-full" required>
+                        <input type="email" name="email" placeholder="Email" class="form-input p-4 rounded w-full" required>
+                        <textarea name="message" rows="5" placeholder="Message" class="form-input p-4 rounded w-full" required></textarea>
+                        <button type="submit" class="action-button text-white font-semibold py-3 px-8 rounded w-full sm:w-auto self-start mt-2">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- FOOTER (Anchored to Bottom) -->
+            <footer class="fixed bottom-0 right-0 w-full lg:w-[65%] xl:w-[60%] bg-black/90 backdrop-blur-md border-gray-800 p-4 text-center z-40">
+                <p class="italic text-gray-400 text-sm mb-1 quote-animation">"Players don't just play the game, they live in it"</p>
+                <p class="text-gray-600 text-xs">&copy; 2024 Lokeshwaran K. All Rights Reserved.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- GLOBAL MODAL -->
+    <div id="modal" class="modal fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content relative max-w-4xl w-full max-h-screen">
+             <button id="modal-close" class="absolute -top-10 right-0 text-white text-3xl hover:text-gray-300 transition">&times;</button>
+             <div id="modal-body" class="flex justify-center items-center"></div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // The unique key for your Google Sheet
-        const sheetId = '2PACX-1vTTY_8t9z3lesn5_WMtcZfCjp7YZ-l1VA8agqduJOaWvMaoW2jKvm3jQ2HFKLUnBnt6BV3uQqrMt9Qk';
+        // Particles
+        particlesJS('particles-js', { "particles": { "number": { "value": 30, "density": { "enable": true, "value_area": 800 }}, "color": { "value": "#444" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#444", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 0.5 }}, "retina_detect": true });
 
-        // --- ACTION REQUIRED ---
-        // Add the sheets you want to track here.
-        // Find the 'gid' for each sheet and paste it. See instructions below.
-        const sheetsToTrack = [
-            { name: 'Paper Presentation', gid: '163988409' },
-            { name: 'Project Presentation', gid: '637290443' },
-            { name: 'Coding Contest', gid: '844163593' },
-            { name: 'Technical quiz', gid: '1239485479' }
-            // You can add or remove sheets here
-        ];
+        // Typing
+        const textToType = "Unity Game Developer";
+        const typingEl = document.getElementById('typing-effect');
+        let i = 0;
+        function typeWriter() {
+            if (i < textToType.length) {
+                typingEl.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+        setTimeout(typeWriter, 500);
 
-        const countsContainer = document.getElementById('counts-container');
-        const lastUpdatedElement = document.getElementById('last-updated');
-
-        // This function fetches and processes the data
-        async function fetchAllCounts() {
-            // Use a CORS proxy to prevent browser errors
-            const proxyUrl = 'https://api.allorigins.win/raw?url=';
-            
-            try {
-                // Create a fetch request for each sheet
-                const fetchPromises = sheetsToTrack.map(sheet => {
-                    if (sheet.gid === 'PASTE_GID_HERE') {
-                        // Skip sheets that haven't been configured
-                        return Promise.resolve({ name: sheet.name, count: 'Setup' });
-                    }
-                    const sheetUrl = `https://docs.google.com/spreadsheets/d/e/${sheetId}/pub?gid=${sheet.gid}&single=true&output=csv`;
-                    const finalUrl = proxyUrl + encodeURIComponent(sheetUrl);
-                    
-                    return fetch(finalUrl)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`Network error for ${sheet.name}`);
-                            return response.text();
-                        })
-                        .then(csvText => {
-                            const rows = csvText.split('\n').filter(row => row.trim() !== '');
-                            // Filter rows to only include rows with non-empty first column (assuming name/email is in first column)
-                            const count = rows.filter((row, index) => {
-                                if (index === 0) return false; // skip header
-                                return row.split(',')[0].trim() !== ''; // first column not empty
-                            }).length;
-
-                            return { name: sheet.name, count: count };
-                        });
+        // View Switcher Logic
+        function switchView(viewName, btn) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            // Show selected view
+            const targetView = document.getElementById('view-' + viewName);
+            if(targetView) {
+                targetView.classList.add('active');
+                // Trigger reveal animation
+                targetView.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.remove('visible');
+                    setTimeout(() => el.classList.add('visible'), 50);
                 });
-
-                // Wait for all requests to complete
-                const results = await Promise.all(fetchPromises);
-                displayCounts(results);
-
-            } catch (error) {
-                console.error('Error fetching sheet data:', error);
-                countsContainer.innerHTML = '<p style="color: red; text-align: center;">Error loading data. Check GIDs and console.</p>';
             }
+
+            // Update Buttons
+            document.querySelectorAll('.top-nav-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
         }
-        
-        // This function updates the HTML with the new counts
-        function displayCounts(counts) {
-            let htmlContent = '';
-            if (counts.length === 0) {
-                countsContainer.innerHTML = '<p>No sheets configured to track.</p>';
-                return;
-            }
-            counts.forEach(item => {
-                htmlContent += `<div class="count-item">
-                                    <span class="item-name">${item.name}</span>
-                                    <span class="item-count">${item.count}</span>
-                                </div>`;
+
+        // Accordion
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.querySelector('.project-header').addEventListener('click', () => {
+                const wasActive = card.classList.contains('active');
+                document.querySelectorAll('.project-card').forEach(c => {
+                    c.classList.remove('active');
+                    c.querySelector('.project-content').style.maxHeight = null;
+                });
+                if (!wasActive) {
+                    card.classList.add('active');
+                    card.querySelector('.project-content').style.maxHeight = "1000px";
+                }
             });
-            countsContainer.innerHTML = htmlContent;
-            lastUpdatedElement.textContent = new Date().toLocaleTimeString();
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('modal');
+        const mBody = document.getElementById('modal-body');
+        const closeBtn = document.getElementById('modal-close');
+
+        function openModal(content) {
+            mBody.innerHTML = content;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('active');
+        }
+        function closeModal() {
+            modal.classList.remove('active');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => mBody.innerHTML = '', 300);
         }
 
-        // Fetch counts on page load, and then every 30 seconds
-        fetchAllCounts();
-        setInterval(fetchAllCounts, 3000);
-    </script>
+        // Event Delegation
+        document.addEventListener('click', (e) => {
+            // Trailer
+            if (e.target.closest('.trailer-button')) {
+                e.preventDefault(); e.stopPropagation();
+                const src = e.target.closest('.trailer-button').dataset.videoSrc;
+                openModal(`<iframe class="w-full aspect-video rounded" src="${src}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`);
+            }
+            // Certificate / Image View
+            if (e.target.closest('.view-cert-button') || e.target.closest('.project-sub-image')) {
+                e.preventDefault(); e.stopPropagation();
+                const el = e.target.closest('.view-cert-button') || e.target.closest('.project-sub-image');
+                const src = el.dataset.certSrc || el.src;
+                openModal(`<img src="${src}" class="max-h-[85vh] rounded shadow-lg">`);
+            }
+            // Close Modal
+            if (e.target === modal || e.target === closeBtn) closeModal();
+        });
 
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal, .quote-animation').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
